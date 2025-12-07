@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "game/commands/PlayerCommand.hpp"
 #include "game/gta/Scripts.hpp"
 #include "game/backend/PlayerData.hpp"
@@ -27,3 +28,4 @@ namespace YimMenu::Features
 
 	static FreemodeStateKick _FreemodeStateKick{"endkick", "Freemode State Kick", "Kicks the player by forcing them to end the freemode session"};
 }
+#endif

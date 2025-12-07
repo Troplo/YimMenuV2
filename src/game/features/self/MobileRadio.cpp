@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/LoopedCommand.hpp"
 #include "game/backend/Self.hpp"
 #include "game/gta/Natives.hpp"
@@ -24,3 +25,5 @@ namespace YimMenu::Features
 
 	static MobileRadio _MobileRadio{"mobileradio", "Mobile Radio", "Allows you to listen to any radio station on foot with Hotkey Q"};
 }
+
+#endif

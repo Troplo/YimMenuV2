@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "game/backend/Self.hpp"
 #include "game/commands/PlayerCommand.hpp"
 #include "core/commands/ListCommand.hpp"
@@ -77,3 +78,4 @@ namespace YimMenu::Features
 
 	static SendToInterior _SendToInterior{"sendtointerior", "Send to Interior", "Sends the player to the selected interior"};
 }
+#endif

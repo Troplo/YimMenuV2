@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/BoolCommand.hpp"
 #include "game/backend/NativeHooks.hpp"
 #include "game/gta/Natives.hpp"
@@ -37,3 +38,4 @@ namespace YimMenu::Features
 		NativeInvoker::GetNativeHandler(NativeIndex::NETWORK_CASINO_CAN_BUY_CHIPS_PVC)(ctx);
 	}
 }
+#endif

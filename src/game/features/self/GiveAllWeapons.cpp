@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/Command.hpp"
 #include "game/backend/Self.hpp"
 #include "game/gta/data/Weapons.hpp"
@@ -17,3 +18,4 @@ namespace YimMenu::Features
 
 	static GiveAllWeapons _GiveAllWeapons{"giveallweapons", "Give All Weapons", "Gives you all weapons"};
 }
+#endif

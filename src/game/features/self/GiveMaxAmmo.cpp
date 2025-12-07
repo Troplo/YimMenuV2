@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/Command.hpp"
 #include "game/backend/Self.hpp"
 #include "game/gta/data/Weapons.hpp"
@@ -19,3 +20,4 @@ namespace YimMenu::Features
 
 	static GiveMaxAmmo _GiveMaxAmmo{"givemaxammo", "Give Max Ammo", "Refills your ammo to max."};
 }
+#endif

@@ -1,3 +1,4 @@
+#if ENABLE_TOXIC_CHEATS
 #include "Weapons.hpp"
 #include "core/backend/FiberPool.hpp"
 #include "core/backend/ScriptMgr.hpp"
@@ -252,3 +253,4 @@ namespace YimMenu::Submenus
 		return weapons;
 	}
 }
+#endif

@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/LoopedCommand.hpp"
 #include "game/backend/Self.hpp"
 
@@ -20,3 +21,4 @@ namespace YimMenu::Features
 
 	static UnlimitedOxygen _UnlimitedOxygen{"unlimitedoxygen", "Unlimited Oxygen", "Allows you to stay underwater without losing oxygen."};
 }
+#endif

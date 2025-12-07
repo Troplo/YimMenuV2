@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/StringCommand.hpp"
 #include "core/frontend/Notifications.hpp"
 #include "game/backend/Self.hpp"
@@ -63,3 +64,4 @@ namespace YimMenu::Features
 	static SpawnPed _SpawnPed{"spawnped", "Spawn Ped", "Spawns a ped at your current location."};
 	static SpawnObject _SpawnObject{"spawnobject", "Spawn Object", "Spawns an object at your current location."};
 }
+#endif

@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/LoopedCommand.hpp"
 #include "game/backend/Self.hpp"
 
@@ -18,3 +19,4 @@ namespace YimMenu::Features
 
 	static KeepPlayerClean _KeepPlayerClean{"keepplayerclean", "Keep Player Clean", "Keeps the player clean from any blood, dirt, water."};
 }
+#endif

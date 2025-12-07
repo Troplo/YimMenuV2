@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/LoopedCommand.hpp"
 #include "game/gta/Pools.hpp"
 #include "game/backend/Self.hpp"
@@ -22,3 +23,4 @@ namespace YimMenu::Features
 	static InfiniteBoundary Infinitebundary{"infiniteboundary", "Infinite Boundary", "You won't die because of border restrictions."};
 
 }
+#endif

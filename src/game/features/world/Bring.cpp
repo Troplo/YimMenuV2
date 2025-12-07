@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/Command.hpp"
 #include "game/backend/Self.hpp"
 #include "game/gta/Pools.hpp"
@@ -59,3 +60,4 @@ namespace YimMenu::Features
 	static BringAllPeds _BringAllPeds{"bringpeds", "Bring All Peds", "Teleports all game peds to you"};
 	static BringAllVehs _BringAllVehs{"bringvehs", "Bring All Vehicles", "Teleports all game vehicles to you"};
 }
+#endif

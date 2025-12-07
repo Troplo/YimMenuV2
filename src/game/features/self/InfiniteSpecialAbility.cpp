@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/LoopedCommand.hpp"
 #include "game/backend/Self.hpp"
 #include "game/gta/Natives.hpp"
@@ -22,3 +23,4 @@ namespace YimMenu::Features
 
 	static InfiniteSpecialAbility _InfiniteSpecialAbility{"infspecialability", "Infinite Special Ability", "Ensures that the special ability bar never runs out"};
 }
+#endif

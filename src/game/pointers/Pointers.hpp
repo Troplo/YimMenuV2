@@ -167,6 +167,7 @@ namespace YimMenu
 		PVOID MatchmakingUpdate;
 		PVOID MatchmakingUnadvertise;
 		PVOID MatchmakingSessionDetailSendResponse;
+		PVOID g_rlPc;
 	};
 
 	struct Pointers : PointerData

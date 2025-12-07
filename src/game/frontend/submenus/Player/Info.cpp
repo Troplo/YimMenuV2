@@ -21,15 +21,18 @@ namespace YimMenu::Submenus
 	std::shared_ptr<Category> BuildInfoMenu()
 	{
 		auto menu = std::make_shared<Category>("Info");
-
+		#if 0
 		auto teleportGroup = std::make_shared<Group>("Teleport");
+		#endif
 		auto playerOptionsGroup = std::make_shared<Group>("Info");
 
+		#if 0
 		playerOptionsGroup->AddItem(std::make_shared<ImGuiItem>([] {
 			if (Players::GetSelected().IsValid())
 				ImGui::Text("%s", Players::GetSelected().GetName());
 		}));
 		playerOptionsGroup->AddItem(std::make_shared<BoolCommandItem>("spectate"_J));
+		#endif
 		playerOptionsGroup->AddItem(std::make_shared<ImGuiItem>([] {
 			if (Players::GetSelected().IsValid())
 			{
@@ -54,10 +57,10 @@ namespace YimMenu::Submenus
 					ImGui::Text("Ped missing or deleted");
 				}
 
+				#if 0
 				auto rid1 = Players::GetSelected().GetRID();
 
 				std::string ridStr = std::to_string(rid1);
-
 				ImGui::Text("RID:");
 				ImGui::SameLine();
 				if (ImGui::SmallButton(std::to_string(rid1).c_str()))
@@ -76,7 +79,7 @@ namespace YimMenu::Submenus
 				{
 					ImGui::SetClipboardText(addr2.c_str());
 				}
-
+				#endif
 				if (ImGui::Button("Add to Saved"))
 					SavedPlayers::GetPlayerData(Players::GetSelected());
 				ImGui::SameLine();
@@ -120,7 +123,8 @@ namespace YimMenu::Submenus
 
 		menu->AddItem(playerOptionsGroup);
 
-		
+
+		#if 0
 		auto customPlayerTp = std::make_shared<Group>("", 1);
 		customPlayerTp->AddItem(std::make_shared<Vector3CommandItem>("playertpcoord"_J, ""));
 		customPlayerTp->AddItem(std::make_shared<PlayerCommandItem>("tpplayertocoord"_J, "Teleport"));
@@ -137,6 +141,7 @@ namespace YimMenu::Submenus
 		teleportGroup->AddItem(customPlayerTp);
 
 		menu->AddItem(teleportGroup);
+		#endif
 
 		return menu;
 	}

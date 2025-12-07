@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/BoolCommand.hpp"
 #include "game/backend/ScriptPatches.hpp"
 
@@ -42,3 +43,4 @@ namespace YimMenu::Features
 
 	static LSCCustomsBypass _LSCCustomsBypass{"lsccustomsbypass", "Remove LSC Restrictions", "Removes Los Santos Customs vehicle modification restrictions"};
 }
+#endif

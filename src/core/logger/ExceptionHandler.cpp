@@ -120,5 +120,3 @@ namespace YimMenu
 		return EXCEPTION_CONTINUE_EXECUTION;
 	}
 }
-
-static YimMenu::ExceptionHandler _ExceptionHandler{};

@@ -3,6 +3,7 @@
 #include "game/hooks/Hooks.hpp"
 #include "game/pointers/Pointers.hpp"
 
+#if ENABLE_TOXIC_CHEATS
 namespace YimMenu::Features
 {
 	class CheaterPool : public LoopedCommand
@@ -33,14 +34,16 @@ namespace YimMenu::Features
 
 	static CheaterPool _CheaterPool{"cheaterpool", "Join YimMenu-only Sessions", "Matchmaking will put you into sessions with other YimMenu users."};
 }
+#endif
 
 namespace YimMenu::Hooks
 {
 	int Network::GetPoolType()
 	{
+#if ENABLE_TOXIC_CHEATS
 		if (YimMenu::Features::_CheaterPool.GetState())
 			return 1;
-
+#endif
 		return BaseHook::Get<Network::GetPoolType, DetourHook<decltype(&Network::GetPoolType)>>()->Original()();
 	}
 }

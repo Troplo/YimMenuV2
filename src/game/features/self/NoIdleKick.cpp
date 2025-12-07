@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/LoopedCommand.hpp"
 #include "game/backend/Tunables.hpp"
 
@@ -41,3 +42,4 @@ namespace YimMenu::Features
 
 	static NoIdleKick _NoIdleKick{"noidlekick", "No Idle Kick", "Prevents you from being kicked while idling."};
 }
+#endif

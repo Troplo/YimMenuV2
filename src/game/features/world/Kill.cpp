@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/Command.hpp"
 #include "game/gta/Pools.hpp"
 
@@ -34,3 +35,4 @@ namespace YimMenu::Features
 	static KillAll _KillAll{"killallpeds", "Kill All Peds", "Kills all peds in the game world"};
 	static KillAllEnemies _KillAllEnemies{"killallenemies", "Kill All Enemies", "Kills all enemies in the game world"};
 }
+#endif

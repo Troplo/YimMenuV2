@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "game/backend/Self.hpp"
 #include "game/commands/PlayerCommand.hpp"
 #include "core/commands/Vector3Command.hpp"
@@ -18,3 +19,4 @@ namespace YimMenu::Features
 
 	static TeleportToCoord _TeleportToCoord{"tpplayertocoord", "Teleport Player To Coord", "Teleports the player to the specified coordinates"};
 }
+#endif

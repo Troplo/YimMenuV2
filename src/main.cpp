@@ -8,6 +8,7 @@
 #include "core/frontend/Notifications.hpp"
 #include "core/hooking/Hooking.hpp"
 #include "core/hooking/CallHook.hpp"
+#include "core/logger/ExceptionHandler.hpp"
 #include "core/memory/ModuleMgr.hpp"
 #include "core/renderer/Renderer.hpp"
 #include "core/util/Wine.hpp"
@@ -25,17 +26,25 @@
 #include "game/features/vehicle/SavePersonalVehicle.hpp"
 #include "game/features/self/OpenGunLocker.hpp"
 #include "game/features/recovery/DailyActivities.hpp"
+#include "game/paragon/natives/native_hooks.h"
 
 namespace YimMenu
 {
 	DWORD Main(void*)
 	{
-		const auto documents = std::filesystem::path(std::getenv("appdata")) / "YimMenuV2";
+		HMODULE hModule = nullptr;
+		while (!hModule) {
+			hModule = GetModuleHandle("Paragon.Sdk.dll");
+			Sleep(100);
+		}
+
+		const auto documents = std::filesystem::path(std::getenv("appdata")) / "Paragon" / "YimShim-Enhanced";
 		FileMgr::Init(documents);
 
-		LogHelper::Init("YimMenuV2", FileMgr::GetProjectFile("./cout.log"));
+		LogHelper::Init("YimMenuV2", FileMgr::GetProjectFile("./cout.log"), false);
 
 		LOGF(INFO, "Welcome to YimMenuV2! Build date: {} at {}", __DATE__, __TIME__);
+		ExceptionHandler();
 
 		g_HotkeySystem.RegisterCommands();
 		SavedLocations::FetchSavedLocations();
@@ -75,15 +84,17 @@ namespace YimMenu
 		ScriptMgr::AddScript(std::make_unique<Script>(&LuaManager::RunScript));
 		ScriptMgr::AddScript(std::make_unique<Script>(&HotkeySystem::RunScript));
 		ScriptMgr::AddScript(std::make_unique<Script>(&Commands::RunScript));
+		#if ENABLE_TOXIC_CHEATS
 		ScriptMgr::AddScript(std::make_unique<Script>(&Features::SavePersonalVehicle::RunScript));
+		#endif
 		ScriptMgr::AddScript(std::make_unique<Script>(&Features::OpenGunLocker::RunScript));
 		ScriptMgr::AddScript(std::make_unique<Script>(&Features::OpenStreetDealerMenu::RunScript));
 		ScriptMgr::AddScript(std::make_unique<Script>(&SavedPlayers::RunScript));
-
+		ParagonNativeHooks::Init();
 		if (!Pointers.LateInit())
 			LOG(WARNING) << "Socialclub patterns failed to load";
 
-		Notifications::Show("YimMenuV2", "Loaded succesfully", NotificationType::Success);
+		Notifications::Show("Paragon", "Press PAUSE BREAK to open menu options.", NotificationType::Success);
 
 		if (InWine().value_or(false))
 		    LOG(INFO) << "Running in Wine!";

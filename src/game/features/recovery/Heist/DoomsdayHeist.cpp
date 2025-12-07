@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/Command.hpp"
 #include "core/commands/IntCommand.hpp"
 #include "core/commands/ListCommand.hpp"
@@ -148,3 +149,4 @@ namespace YimMenu::Features
 		static InstantFinishAct3 _DoomsdayHeistInstantFinishAct3{"doomsdayheistinstantfinishact3", "Instant Finish (Act: III)", "Instantly passes Doomsday Scenario Act: III"};
 	}
 }
+#endif

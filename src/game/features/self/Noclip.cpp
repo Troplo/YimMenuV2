@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/FloatCommand.hpp"
 #include "core/commands/LoopedCommand.hpp"
 #include "game/backend/Self.hpp"
@@ -95,3 +96,4 @@ namespace YimMenu::Features
 
 	static Noclip _NoClip{"noclip", "No Clip", "Allows you to fly through the map"};
 }
+#endif

@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/Command.hpp"
 #include "game/backend/PersonalVehicles.hpp"
 #include "game/pointers/Pointers.hpp"
@@ -19,3 +20,4 @@ namespace YimMenu
 
 	static DespawnPersonalVehicle _DespawnPersonalVehicle{"despawnpv", "Despawn Personal Vehicle", "Returns your current Personal Vehicle to storage."};
 }
+#endif

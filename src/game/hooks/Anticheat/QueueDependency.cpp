@@ -3,6 +3,7 @@
 #include "game/pointers/Pointers.hpp"
 #include "core/memory/ModuleMgr.hpp"
 #include "core/memory/PointerCalculator.hpp"
+#include "core/util/CurrentModule.h"
 #include "core/util/Joaat.hpp"
 
 #include <intrin.h>
@@ -12,7 +13,7 @@ namespace YimMenu::Hooks
 	static bool IsAddressInGameMemory(void* addr)
 	{
 		auto as_int = reinterpret_cast<uintptr_t>(addr);
-		static auto module = ModuleMgr.Get("GTA5_Enhanced.exe"_J); // this should always succeed
+		static auto module = ModuleMgr.Get(GetCurrentModuleJ()); // this should always succeed
 
 		return as_int >= module->Base() && as_int <= module->End();
 	}

@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "game/backend/Self.hpp"
 #include "game/commands/PlayerCommand.hpp"
 #include "types/script/globals/GlobalPlayerBD.hpp"
@@ -33,3 +34,4 @@ namespace YimMenu::Features
 
 	static Blackscreen _Blackscreen{"blackscreen", "Blackscreen", "Forces the player into an infinite loading screen that can only be fixed by restarting the game"};
 }
+#endif

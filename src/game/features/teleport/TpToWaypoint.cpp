@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/Command.hpp"
 #include "core/commands/LoopedCommand.hpp"
 #include "core/backend/FiberPool.hpp"
@@ -84,3 +85,5 @@ namespace YimMenu::Features
 	static TpToWaypoint _TpToWaypoint{"tptowaypoint", "Teleport to Waypoint", "Teleports you to the waypoint"};
 	static AutoTpToWaypoint _AutoTpToWaypoint{"autotptowaypoint", "Auto Teleport to Waypoint", "Automatically teleports you to the waypoint"};
 }
+
+#endif

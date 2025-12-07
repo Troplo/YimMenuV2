@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/LoopedCommand.hpp"
 #include "game/backend/Self.hpp"
 #include "game/gta/Pools.hpp"
@@ -22,3 +23,4 @@ namespace YimMenu::Features
 	static DisableCriticalHits _DisableCriticalHits{"disablecriticalhits", "Disable Critical Hits", "Prevent you from getting Critical Hits"};
 
 }
+#endif

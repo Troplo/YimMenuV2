@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/LoopedCommand.hpp"
 #include "game/backend/Players.hpp"
 #include "game/gta/Natives.hpp"
@@ -37,3 +38,4 @@ namespace YimMenu::Features
 
 	static Spectate _Spectate{"spectate", "Spectate", "Spectates the selected player"};
 }
+#endif

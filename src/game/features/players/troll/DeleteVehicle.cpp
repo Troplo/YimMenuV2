@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "game/commands/PlayerCommand.hpp"
 
 namespace YimMenu::Features
@@ -15,3 +16,4 @@ namespace YimMenu::Features
 
 	static DeleteVehicle _DeleteVehicle{"deleteveh", "Delete Vehicle", "Deletes the vehicle the player is in"};
 }
+#endif

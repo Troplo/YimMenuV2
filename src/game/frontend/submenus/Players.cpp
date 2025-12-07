@@ -118,9 +118,11 @@ namespace YimMenu::Submenus
 	    Submenu::Submenu("Players", ICON_FA_USERS)
 	{
 		AddCategory(std::move(BuildInfoMenu()));
+		#if ENABLE_TOXIC_CHEATS
 		AddCategory(std::move(BuildTrollMenu()));
 		AddCategory(std::move(BuildToxicMenu()));
 		AddCategory(std::move(BuildKickMenu()));
+		#endif
 
 		for (auto& category : m_Categories)
 			category->PrependItem(std::make_shared<ImGuiItem>([] {

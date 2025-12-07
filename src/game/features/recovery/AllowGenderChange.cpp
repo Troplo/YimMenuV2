@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/BoolCommand.hpp"
 #include "game/gta/Stats.hpp"
 
@@ -20,3 +21,4 @@ namespace YimMenu::Features
 
 	static AllowGenderChange _AllowGenderChange{"allowgenderchange", "Allow Gender Change", "Allows the player to change the character's gender"};
 }
+#endif

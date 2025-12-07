@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/BoolCommand.hpp"
 #include "game/backend/NodeHooks.hpp"
 #include "game/backend/Self.hpp"
@@ -104,3 +105,4 @@ namespace YimMenu::Features
 
 	static HarassPlayers _HarassPlayers{"harassplayers", "Harass Players", "Spoofs your position to make it appear as if you're next to all the players in the session at all times. Use with caution"};
 }
+#endif

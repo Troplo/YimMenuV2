@@ -88,6 +88,6 @@ namespace YimMenu
 		std::map<std::string, std::unique_ptr<PersonalVehicle>> m_PersonalVehicles;
 		std::map<int, std::string> m_PVLookup;
 		std::set<std::string> m_Garages;
-		std::chrono::time_point<std::chrono::steady_clock> m_LastUpdate;
+		std::chrono::high_resolution_clock::time_point m_LastUpdate;
 	};
 }

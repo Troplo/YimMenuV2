@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/BoolCommand.hpp"
 #include "game/backend/ScriptPatches.hpp"
 
@@ -40,3 +41,4 @@ namespace YimMenu
 
 	static EnableCreatorDevMode _EnableCreatorDevMode{"enablecreatordevmode", "Enable Creator Dev Mode", "Enables the developer mode in Creator."};
 }
+#endif

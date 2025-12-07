@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "game/commands/PlayerCommand.hpp"
 #include "types/script/ScriptEvent.hpp"
 
@@ -24,3 +25,4 @@ namespace YimMenu::Features
 
 	static NullFunctionKick _NullFunctionKick{"nfkick", "Null Function Kick", "Kicks the player by forcing them to call a null script function"};
 }
+#endif

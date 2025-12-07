@@ -1,3 +1,4 @@
+#if ENABLE_TOXIC_CHEATS
 #pragma once
 #include "core/commands/BoolCommand.hpp"
 #include "core/commands/ColorCommand.hpp"
@@ -70,3 +71,4 @@ namespace YimMenu::Features
 	static BoolCommand _PaintGunRainbowColorEnabled{"paintgunrainbowcolorenabled", "Rainbow Color", "Enables rainbow color for paint gun", false};
 	static IntCommand _PaintGunRainbowColorSpeed{"paintgunrainbowcolorspeed", "Rainbow Color Speed", "Speed of rainbow color for paint gun", 1, 10, 1};
 }
+#endif

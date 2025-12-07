@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/Command.hpp"
 #include "game/backend/Self.hpp"
 
@@ -18,3 +19,4 @@ namespace YimMenu::Features
 
 	static Heal _Heal{"heal", "Heal", "Restores your health and armour."};
 }
+#endif

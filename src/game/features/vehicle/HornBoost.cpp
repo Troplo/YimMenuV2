@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/LoopedCommand.hpp"
 #include "game/backend/Self.hpp"
 #include "game/gta/Natives.hpp"
@@ -43,3 +44,4 @@ namespace YimMenu::Features
 
 	static HornBoost _HornBoost{"hornboost", "Horn Boost", "Makes the vehicle boost when you hold the horn"};
 }
+#endif

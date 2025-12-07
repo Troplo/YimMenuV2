@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/LoopedCommand.hpp"
 #include "game/backend/Self.hpp"
 #include "game/gta/Natives.hpp"
@@ -16,3 +17,5 @@ namespace YimMenu::Features
 
 	static AllowHatsInVehicles _AllowHatsInVehicles{"allowhatsinvehicles", "Allow Hats In Vehicles", "Allows you to keep your hats or head gear inside vehicles."};
 };
+
+#endif

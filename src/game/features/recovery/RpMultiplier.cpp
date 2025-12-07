@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/LoopedCommand.hpp"
 #include "core/commands/FloatCommand.hpp"
 #include "game/backend/Tunables.hpp"
@@ -33,3 +34,4 @@ namespace YimMenu::Features
 
 	static OverrideRPMultiplier _OverrideRPMultiplier{"overriderpmultiplier", "Override RP Multiplier", "Multiplies RP by the given value"};
 }
+#endif

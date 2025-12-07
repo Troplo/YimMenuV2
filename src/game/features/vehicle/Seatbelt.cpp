@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/LoopedCommand.hpp"
 #include "game/gta/Natives.hpp"
 #include "game/backend/Self.hpp"
@@ -33,3 +34,4 @@ namespace YimMenu::Features
 
 	static Seatbelt _Seatbelt{"seatbelt", "Seatbelt", "Prevents you from falling out of vehicles."};
 };
+#endif

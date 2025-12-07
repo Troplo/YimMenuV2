@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/ListCommand.hpp"
 #include "game/backend/Self.hpp"
 #include "game/gta/ScriptGlobal.hpp"
@@ -88,3 +89,4 @@ namespace YimMenu::Features
 
 	static ClaimSafeEarnings _ClaimSafeEarnings{"claimsafeearnings", "Claim Safe Earnings", "Claims your safe earnings from the selected business."};
 }
+#endif

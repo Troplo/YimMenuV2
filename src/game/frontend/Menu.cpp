@@ -28,7 +28,9 @@ namespace YimMenu
 		// Arguably the only place this file should be edited at for more menus
 		UIManager::AddSubmenu(std::make_shared<Submenus::Self>());
 		UIManager::AddSubmenu(std::make_shared<Submenus::Vehicle>());
+		#if ENABLE_TOXIC_CHEATS
 		UIManager::AddSubmenu(std::make_shared<Submenus::Teleport>());
+		#endif
 		UIManager::AddSubmenu(std::make_shared<Submenus::Network>());
 		UIManager::AddSubmenu(std::make_shared<Submenus::Players>());
 		UIManager::AddSubmenu(std::make_shared<Submenus::World>());
@@ -38,7 +40,7 @@ namespace YimMenu
 
 		Renderer::AddRendererCallBack(
 		    [&] {
-			    ProcessOnboarding();
+			    // ProcessOnboarding();
 			    if (!GUI::IsOpen())
 				    return;
 

@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/BoolCommand.hpp"
 #include "game/backend/NativeHooks.hpp"
 #include "game/gta/Natives.hpp"
@@ -47,3 +48,4 @@ namespace YimMenu::Features
 		}
 	}
 }
+#endif

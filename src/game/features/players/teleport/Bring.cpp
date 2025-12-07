@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "game/commands/PlayerCommand.hpp"
 #include "game/backend/Self.hpp"
 
@@ -15,3 +16,4 @@ namespace YimMenu::Features
 
 	static Bring _Bring{"bring", "Bring", "Brings the player to you"};
 }
+#endif

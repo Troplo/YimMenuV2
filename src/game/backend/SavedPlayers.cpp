@@ -127,15 +127,15 @@ namespace YimMenu
 
 	void SavedPlayers::RunScriptImpl()
 	{
-		while (g_Running)
-		{
-			if (Features::_AutoUpdateEnabled.GetState() && std::chrono::system_clock::now() - m_LastPlayerInfoFetch > AUTO_REFRESH_TIME && Pointers.GetPresenceAttributes)
-			{
-				FetchPlayerInfo(true);
-				m_LastPlayerInfoFetch = std::chrono::system_clock::now();
-			}
-			ScriptMgr::Yield();
-		}
+		// while (g_Running)
+		// {
+			// if (Features::_AutoUpdateEnabled.GetState() && std::chrono::system_clock::now() - m_LastPlayerInfoFetch > AUTO_REFRESH_TIME && Pointers.GetPresenceAttributes)
+			// {
+				// FetchPlayerInfo(true);
+				// m_LastPlayerInfoFetch = std::chrono::system_clock::now();
+			// }
+			// ScriptMgr::Yield();
+		// }
 	}
 
 	void SavedPlayers::FetchPlayerInfoImpl(bool tracked_only)

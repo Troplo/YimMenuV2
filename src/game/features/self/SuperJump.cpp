@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/LoopedCommand.hpp"
 #include "game/backend/Self.hpp"
 #include "game/gta/Natives.hpp"
@@ -16,3 +17,4 @@ namespace YimMenu::Features
 
 	static SuperJump _SuperJump{"superjump", "Super Jump", "Jump higher than normal"};
 }
+#endif

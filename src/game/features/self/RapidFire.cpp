@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/LoopedCommand.hpp"
 #include "core/util/Math.hpp"
 #include "game/backend/Self.hpp"
@@ -87,3 +88,4 @@ namespace YimMenu::Features
 
 	static RapidFire _RapidFire{"rapidfire", "Rapid Fire", "Increases the fire rate of your weapons substantially"};
 }
+#endif

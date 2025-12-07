@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/LoopedCommand.hpp"
 #include "core/commands/ListCommand.hpp"
 #include "game/pointers/Pointers.hpp"
@@ -42,3 +43,4 @@ namespace YimMenu::Features
 
 	static SpoofMatchmakingRegion _SpoofMatchmakingRegion{"spoofmmregion", "Spoof Matchmaking Region", "Change the region you matchmake in to the specified value"};
 }
+#endif

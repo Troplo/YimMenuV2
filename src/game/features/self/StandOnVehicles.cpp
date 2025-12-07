@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/LoopedCommand.hpp"
 #include "game/backend/Self.hpp"
 #include "game/gta/Natives.hpp"
@@ -16,3 +17,5 @@ namespace YimMenu::Features
 
 	static StandOnVehicles _StandOnVehicles{"standonvehicles", "Stand On Vehicles", "Prevents you from ragdolling when standing on top of vehicles."};
 };
+
+#endif

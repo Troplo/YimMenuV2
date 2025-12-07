@@ -15,11 +15,13 @@ namespace YimMenu::Submenus
 		// TODO: this needs a rework
 		auto session = std::make_shared<Category>("Session");
 		auto joinGroup = std::make_shared<Group>("Join");
+		#if ENABLE_TOXIC_CHEATS
 		auto bountyGroup = std::make_shared<Group>("Bounty", 1);
 		auto toxicGroup = std::make_shared<Group>("Toxic");
 		auto teleportGroup = std::make_shared<Group>("Teleport");
 		auto trollGroup = std::make_shared<Group>("Troll");
 		auto miscGroup = std::make_shared<Group>("Misc");
+		#endif
 		auto enhancements = std::make_shared<Group>("Enhancements");
 
 		auto joinSession = std::make_shared<Group>("", 1);
@@ -56,6 +58,7 @@ namespace YimMenu::Submenus
 				});
 		}));
 
+		#if ENABLE_TOXIC_CHEATS
 		bountyGroup->AddItem(std::make_shared<IntCommandItem>("bountyamount"_J, "Amount"));
 		bountyGroup->AddItem(std::make_shared<BoolCommandItem>("anonymousbounty"_J, "Anonymous"));
 		bountyGroup->AddItem(std::make_shared<CommandItem>("setbountyall"_J, "Set Bounties"));
@@ -93,17 +96,20 @@ namespace YimMenu::Submenus
 		enhancements->AddItem(std::make_shared<BoolCommandItem>("despawnbypass"_J));
 		enhancements->AddItem(std::make_shared<BoolCommandItem>("bypasscasinogeoblock"_J));
 		enhancements->AddItem(std::make_shared<BoolCommandItem>("forcescripthost"_J));
+		#endif
 		enhancements->AddItem(std::make_shared<BoolCommandItem>("pausegame"_J));
 		enhancements->AddItem(std::make_shared<BoolCommandItem>("nocalls"_J));
-
 		session->AddItem(joinGroup);
+		#if ENABLE_TOXIC_CHEATS
 		session->AddItem(bountyGroup);
 		session->AddItem(trollGroup);
 		session->AddItem(teleportGroup);
 		session->AddItem(toxicGroup);
 		session->AddItem(miscGroup);
+		#endif
 		session->AddItem(enhancements);
 
+		#if ENABLE_TOXIC_CHEATS
 		auto spoofing = std::make_shared<Category>("Spoofing");
 		auto matchmakingGroup = std::make_shared<Group>("Matchmaking (Client)");
 		matchmakingGroup->AddItem(std::make_shared<BoolCommandItem>("cheaterpool"_J));
@@ -131,10 +137,13 @@ namespace YimMenu::Submenus
 		matchmakingSrvGroup->AddItem(std::move(srvSpoofPlayerCount));
 		matchmakingSrvGroup->AddItem(std::move(srvMultiplex));
 		spoofing->AddItem(matchmakingSrvGroup);
+		#endif
 
 		AddCategory(std::move(session));
+		#if ENABLE_TOXIC_CHEATS
 		AddCategory(std::move(spoofing));
 		AddCategory(std::move(BuildSavedPlayersMenu()));
+		#endif
 		AddCategory(BuildRandomEventsMenu());
 	}
 }

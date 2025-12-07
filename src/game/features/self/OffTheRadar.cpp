@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/LoopedCommand.hpp"
 #include "game/backend/Self.hpp"
 #include "game/gta/Scripts.hpp"
@@ -24,3 +25,4 @@ namespace YimMenu::Features
 
 	static OffTheRadar _OffTheRadar{"otr", "Off The Radar", "Hides you from other players on the radar"};
 }
+#endif

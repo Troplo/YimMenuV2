@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/BoolCommand.hpp"
 #include "game/backend/NodeHooks.hpp"
 #include "game/backend/Self.hpp"
@@ -57,3 +58,4 @@ namespace YimMenu::Features
 
 	static SpamKillfeed _SpamKillfeed{"spamkillfeed", "Spam Killfeed", "Spams the killfeed of all players with fake kill entries. Use with caution"};
 }
+#endif

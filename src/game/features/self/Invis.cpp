@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/LoopedCommand.hpp"
 #include "game/backend/Self.hpp"
 
@@ -33,3 +34,4 @@ namespace YimMenu::Features
 
 	static Invis _Invis{"invis", "Invisibility", "Be invisible"};
 }
+#endif

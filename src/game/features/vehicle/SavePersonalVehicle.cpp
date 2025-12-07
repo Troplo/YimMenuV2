@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "SavePersonalVehicle.hpp"
 #include "core/commands/Command.hpp"
 #include "core/backend/ScriptMgr.hpp"
@@ -122,3 +123,4 @@ namespace YimMenu::Features
 
 	static _SavePersonalVehicle __SavePersonalVehicle{"savepersonalvehicle", "Save Personal Vehicle", "Saves the current vehicle you are in as your personal vehicle."};
 }
+#endif

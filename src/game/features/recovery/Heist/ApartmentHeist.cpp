@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/IntCommand.hpp"
 #include "core/commands/Command.hpp"
 #include "game/gta/Stats.hpp"
@@ -143,3 +144,4 @@ namespace YimMenu::Features
 		static InstantFinishPacific _ApartmentHeistInstantFinishPacific{"apartmentheistinstantfinishpacific", "Instant Finish (Pacific)", "Instantly passes Pacific Standard Job"};
 	}
 }
+#endif

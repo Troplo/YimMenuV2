@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/LoopedCommand.hpp"
 #include "game/backend/Self.hpp"
 #include "game/gta/Pools.hpp"
@@ -103,3 +104,5 @@ namespace YimMenu::Features
 	    "Melee Damage",
 	    "Allows altering your melee damage output"};
 }
+
+#endif

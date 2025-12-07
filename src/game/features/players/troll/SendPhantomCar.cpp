@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "game/commands/PlayerCommand.hpp"
 #include "core/backend/ScriptMgr.hpp"
 #include "game/gta/Scripts.hpp"
@@ -30,3 +31,4 @@ namespace YimMenu::Features
 
 	static SendPhantomCar _SendPhantomCar{"sendphantomcar", "Send Phantom Car", "Sends the Phantom Car to the specified player."};
 }
+#endif

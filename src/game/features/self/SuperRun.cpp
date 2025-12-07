@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/LoopedCommand.hpp"
 #include "core/commands/FloatCommand.hpp"
 #include "game/backend/Self.hpp"
@@ -41,3 +42,4 @@ namespace YimMenu::Features
 
 	static SuperRun _Superrun{"superrun", "Super Run", "Run faster than normal"};
 }
+#endif

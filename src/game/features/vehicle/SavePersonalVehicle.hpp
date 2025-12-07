@@ -1,3 +1,4 @@
+#if ENABLE_TOXIC_CHEATS
 #pragma once
 
 namespace rage
@@ -33,3 +34,4 @@ namespace YimMenu::Features
 		}
 	};
 }
+#endif

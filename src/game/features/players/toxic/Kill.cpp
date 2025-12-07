@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "game/commands/PlayerCommand.hpp"
 
 namespace YimMenu::Features
@@ -15,3 +16,4 @@ namespace YimMenu::Features
 
 	static Kill _Kill{"kill", "Kill", "Kills the player"};
 }
+#endif

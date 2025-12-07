@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "game/commands/PlayerCommand.hpp"
 #include "types/script/globals/GSBD_Kicking.hpp"
 #include "game/gta/Scripts.hpp"
@@ -20,3 +21,4 @@ namespace YimMenu::Features
 
 	static ScriptHostKick _ScriptHostKick{"shkick", "Script Host Kick", "Kicks the player by faking a vote kick"};
 }
+#endif

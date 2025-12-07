@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/Command.hpp"
 #include "game/gta/Stats.hpp"
 
@@ -28,3 +29,4 @@ namespace YimMenu::Features
 
 	static FillInventory _FillInventory{"fillinventory", "Fill Inventory", "Fills all of your snacks and armours."};
 }
+#endif

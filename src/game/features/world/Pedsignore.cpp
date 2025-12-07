@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/LoopedCommand.hpp"
 #include "game/gta/Pools.hpp"
 #include "game/backend/Self.hpp"
@@ -26,3 +27,4 @@ namespace YimMenu::Features
 	static PedIgnore _PedIgnore{"pedsignore", "Peds Ignore", "Nearby peds will ignore you and become oblivious to your actions."};
 
 }
+#endif

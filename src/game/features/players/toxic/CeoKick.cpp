@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "game/commands/PlayerCommand.hpp"
 #include "types/script/ScriptEvent.hpp"
 
@@ -23,3 +24,4 @@ namespace YimMenu::Features
 
 	static CeoKick _CeoKick{"ceokick", "CEO Kick", "Kicks the player from their organization or motorcycle club"};
 }
+#endif

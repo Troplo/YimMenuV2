@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "game/commands/PlayerCommand.hpp"
 #include "types/script/ScriptEvent.hpp"
 
@@ -27,3 +28,4 @@ namespace YimMenu::Features
 
 	static SendSext _SendSext{"sendsext", "Send Sext", "Sends a random sext to the specified player"};
 }
+#endif

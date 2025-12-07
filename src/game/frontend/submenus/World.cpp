@@ -8,9 +8,12 @@ namespace YimMenu::Submenus
 		#define ICON_FA_GLOBE "\xef\x82\xac"
 	    Submenu::Submenu("World", ICON_FA_GLOBE)
 	{
+		#if ENABLE_TOXIC_CHEATS
 		auto main = std::make_shared<Category>("Main");
+		#endif
 		auto iplsGroup = std::make_shared<Category>("IPLs");
 
+		#if ENABLE_TOXIC_CHEATS
 		auto killPeds = std::make_shared<Group>("Kill", 1);
 		killPeds->AddItem(std::make_shared<CommandItem>("killallpeds"_J));
 		killPeds->AddItem(std::make_shared<CommandItem>("killallenemies"_J));
@@ -46,21 +49,23 @@ namespace YimMenu::Submenus
 		otherOpts->AddItem(std::make_shared<BoolCommandItem>("CopsDispatch"_J));
 		otherOpts->AddItem(std::make_shared<BoolCommandItem>("enablecreatordevmode"_J));
 		otherOpts->AddItem(std::make_shared<BoolCommandItem>("infiniteboundary"_J));
-
 		main->AddItem(std::move(killPeds));
 		main->AddItem(std::move(deleteOpts));
 		main->AddItem(std::move(bringOpts));
 		main->AddItem(std::move(weatherOpts));
 		main->AddItem(std::move(otherOpts));
 		main->AddItem(timeGroup);
+		#endif
 
 		iplsGroup->AddItem(std::make_shared<ListCommandItem>("iplselector"_J));
 		iplsGroup->AddItem(std::make_shared<CommandItem>("loadipl"_J));
 		iplsGroup->AddItem(std::make_shared<CommandItem>("unloadipl"_J));
 		iplsGroup->AddItem(std::make_shared<CommandItem>("ipltp"_J));
 
+		#if ENABLE_TOXIC_CHEATS
 		AddCategory(std::move(main));
 		AddCategory(std::move(BuildSpawnPedMenu()));
+		#endif
 		AddCategory(std::move(iplsGroup));
 	}
 };

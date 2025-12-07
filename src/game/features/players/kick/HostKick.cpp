@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "game/commands/PlayerCommand.hpp"
 #include "game/backend/NativeHooks.hpp"
 #include "game/gta/Natives.hpp"
@@ -15,3 +16,4 @@ namespace YimMenu::Features
 
 	static HostKick _HostKick{"HKick", "Host Kick", "Only available as host and the target is unblockable"};
 }
+#endif

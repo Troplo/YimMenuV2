@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "ESP.hpp"
 #include "game/gta/Object.hpp"
 #include "common.hpp"
@@ -350,3 +351,4 @@ namespace YimMenu
 		ImGui::PopFont();
 	}
 }
+#endif

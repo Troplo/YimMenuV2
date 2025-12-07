@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/BoolCommand.hpp"
 #include "core/hooking/CallHook.hpp"
 #include "game/backend/NativeHooks.hpp"
@@ -77,3 +78,4 @@ namespace YimMenu::Features
 		GRAPHICS::SCALEFORM_MOVIE_METHOD_ADD_PARAM_INT(value);
 	}
 }
+#endif

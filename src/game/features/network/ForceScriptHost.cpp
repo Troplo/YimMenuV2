@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/LoopedCommand.hpp"
 #include "game/gta/Natives.hpp"
 #include "game/gta/Scripts.hpp"
@@ -23,3 +24,4 @@ namespace YimMenu::Features
 
 	static ForceScriptHost _ForceScriptHost{"forcescripthost", "Force Script Host", "Forces you to become freemode script host. Note that this might break some missions."};
 }
+#endif

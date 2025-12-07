@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/Command.hpp"
 #include "core/commands/IntCommand.hpp"
 #include "core/commands/LoopedCommand.hpp"
@@ -42,3 +43,5 @@ namespace YimMenu::Features
 	static SetNetworkTime _SetTime{"setnetworktime", "Set Time", "Sets the current online time"};
 	static FreezeNetworkTime _FreezeTime{"freezenetworktime", "Freeze Time", "Freezes the online clock at the selected time"};
 }
+
+#endif

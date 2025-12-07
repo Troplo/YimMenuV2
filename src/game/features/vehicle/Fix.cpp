@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/Command.hpp"
 #include "game/backend/Self.hpp"
 
@@ -16,3 +17,4 @@ namespace YimMenu::Features
 
 	static RepairVehicle _RepairVehicle{"repairvehicle", "Repair Vehicle", "Fixes any damage to your current vehicle"};
 }
+#endif

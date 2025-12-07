@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "game/backend/Self.hpp"
 #include "game/commands/PlayerCommand.hpp"
 #include "core/commands/ListCommand.hpp"
@@ -143,3 +144,4 @@ namespace YimMenu::Features
 
 	static SendToProperty _SendToProperty{"sendtoproperty", "Send to Property", "Sends the player to the selected property"};
 }
+#endif

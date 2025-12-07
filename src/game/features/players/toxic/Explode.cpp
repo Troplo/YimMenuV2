@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "game/commands/PlayerCommand.hpp"
 #include "types/fx/ExplosionType.hpp"
 
@@ -16,3 +17,4 @@ namespace YimMenu::Features
 
 	static Explode _Explode{"explode", "Explode", "Blows the player up"};
 }
+#endif

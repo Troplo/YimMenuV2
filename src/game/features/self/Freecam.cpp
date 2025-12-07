@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/FloatCommand.hpp"
 #include "core/commands/LoopedCommand.hpp"
 #include "core/util/Math.hpp"
@@ -145,3 +146,4 @@ namespace YimMenu::Features
 
 	static Freecam _Freecam{"freecam", "Freecam", "Detaches your camera and allows you to go anywhere!"};
 }
+#endif

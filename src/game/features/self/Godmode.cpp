@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/LoopedCommand.hpp"
 #include "game/backend/Self.hpp"
 
@@ -29,3 +30,4 @@ namespace YimMenu::Features
 
 	static Godmode _Godmode{"godmode", "God Mode", "Blocks all incoming damage"};
 }
+#endif

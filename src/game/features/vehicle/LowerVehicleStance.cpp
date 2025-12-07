@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/LoopedCommand.hpp"
 #include "game/backend/Self.hpp"
 
@@ -28,3 +29,4 @@ namespace YimMenu::Features
 
 	static LowerVehicleStance _LowerVehicleStance{"lowervehiclestance", "Lower Vehicle Stance", "Lowers your current vehicle's stance. Only some vehicles are supported"};
 }
+#endif

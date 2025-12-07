@@ -2,6 +2,7 @@
 #include "core/filemgr/FileMgr.hpp"
 #include "core/memory/ModuleMgr.hpp"
 #include "core/backend/ScriptMgr.hpp"
+#include "core/util/CurrentModule.h"
 #include "game/backend/NativeHooks.hpp"
 #include "game/gta/data/StackSizes.hpp"
 #include "game/gta/Natives.hpp"
@@ -79,7 +80,7 @@ namespace YimMenu
 
 			m_CacheFile.Load();
 
-			if (m_CacheFile.UpToDate(ModuleMgr.Get("GTA5_Enhanced.exe"_J)->GetNtHeader()->FileHeader.TimeDateStamp))
+			if (m_CacheFile.UpToDate(ModuleMgr.Get(GetCurrentModuleJ())->GetNtHeader()->FileHeader.TimeDateStamp))
 			{
 				m_Loading = true;
 				Load();
@@ -171,7 +172,7 @@ namespace YimMenu
 			dataPtr += sizeof(TunableSaveStruct);
 		}
 
-		m_CacheFile.SetHeaderVersion(ModuleMgr.Get("GTA5_Enhanced.exe"_J)->GetNtHeader()->FileHeader.TimeDateStamp);
+		m_CacheFile.SetHeaderVersion(ModuleMgr.Get(GetCurrentModuleJ())->GetNtHeader()->FileHeader.TimeDateStamp);
 		m_CacheFile.SetData(std::move(data), dataSize);
 		m_CacheFile.Write();
 	}

@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/LoopedCommand.hpp"
 #include "core/commands/ListCommand.hpp"
 #include "game/backend/NativeHooks.hpp"
@@ -77,3 +78,4 @@ namespace YimMenu::Features
 		return ctx->SetReturnValue(PAD::IS_CONTROL_PRESSED(ctx->GetArg<int>(0), ctx->GetArg<int>(1)));
 	}
 }
+#endif

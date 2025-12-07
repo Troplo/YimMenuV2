@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/LoopedCommand.hpp"
 #include "core/commands/ListCommand.hpp"
 #include "game/backend/Self.hpp"
@@ -37,3 +38,4 @@ namespace YimMenu::Features
 
 	static ModifyRocketBoost _ModifyRocketBoost{"modifyboostbehavior", "Modify boost behavior", "Modify rocket boost behavior for vehicles that support it"};
 };
+#endif

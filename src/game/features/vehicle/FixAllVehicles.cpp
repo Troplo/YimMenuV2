@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/Command.hpp"
 #include "core/frontend/Notifications.hpp"
 #include "game/backend/PersonalVehicles.hpp"
@@ -31,3 +32,4 @@ namespace YimMenu::Features
 
 	static FixAllVehicles _FixAllVehicles{"fixallvehicles", "Fix All Vehicles", "Fixes all of your destroyed personal vehicles."};
 }
+#endif

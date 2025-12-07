@@ -12,12 +12,17 @@ namespace YimMenu::Submenus
 	    Submenu::Submenu("Self", ICON_FA_USER)
 	{
 		auto main = std::make_shared<Category>("Main");
+		#if ENABLE_TOXIC_CHEATS
 		auto globalsGroup = std::make_shared<Group>("Globals");
 		auto movementGroup = std::make_shared<Group>("Movement");
+		#endif
 		auto toolsGroup = std::make_shared<Group>("Tools", 2);
+		#if ENABLE_TOXIC_CHEATS
 		auto specialAbilityGroup = std::make_shared<Group>("Special Ability");
+		#endif
 		auto wantedGroup = std::make_shared<Group>("Wanted");
 
+		#if ENABLE_TOXIC_CHEATS
 		globalsGroup->AddItem(std::make_shared<BoolCommandItem>("godmode"_J));
 		globalsGroup->AddItem(std::make_shared<BoolCommandItem>("invis"_J));
 		globalsGroup->AddItem(std::make_shared<ConditionalItem>("invis"_J, std::make_shared<BoolCommandItem>("localvis"_J)));
@@ -29,13 +34,16 @@ namespace YimMenu::Submenus
 		globalsGroup->AddItem(std::make_shared<BoolCommandItem>("mobileradio"_J));
 		globalsGroup->AddItem(std::make_shared<BoolCommandItem>("keepplayerclean"_J));
 		globalsGroup->AddItem(std::make_shared<BoolCommandItem>("disablecriticalhits"_J));
+		#endif
 
 		toolsGroup->AddItem(std::make_shared<CommandItem>("skipcutscene"_J));
 		toolsGroup->AddItem(std::make_shared<CommandItem>("skipconversation"_J));
 		toolsGroup->AddItem(std::make_shared<CommandItem>("suicide"_J));
+		#if ENABLE_TOXIC_CHEATS
 		toolsGroup->AddItem(std::make_shared<CommandItem>("heal"_J));
 		toolsGroup->AddItem(std::make_shared<CommandItem>("cleardamage"_J));
 		toolsGroup->AddItem(std::make_shared<CommandItem>("fillinventory"_J));
+		#endif
 		toolsGroup->AddItem(std::make_shared<CommandItem>("openwardrobe"_J));
 
 		auto clearWanted = std::make_shared<Group>("", 1);
@@ -48,6 +56,7 @@ namespace YimMenu::Submenus
 		wantedGroup->AddItem(std::make_shared<ConditionalItem>("freezewanted"_J, clearWanted, true));
 		wantedGroup->AddItem(std::make_shared<ConditionalItem>("neverwanted"_J, setWanted, true));
 
+		#if ENABLE_TOXIC_CHEATS
 		movementGroup->AddItem(std::make_shared<BoolCommandItem>("standonvehicles"_J));
 		movementGroup->AddItem(std::make_shared<BoolCommandItem>("disableactionmode"_J));
 		movementGroup->AddItem(std::make_shared<BoolCommandItem>("superrun"_J));
@@ -64,16 +73,24 @@ namespace YimMenu::Submenus
 		specialInMp->AddItem(std::make_shared<BoolCommandItem>("mpspecialability"_J, "Enable in MP"));
 		specialInMp->AddItem(std::make_shared<ConditionalItem>("mpspecialability"_J, std::make_shared<ListCommandItem>("selspecialability"_J, "##specialselect")));
 		specialAbilityGroup->AddItem(std::move(specialInMp));
+		#endif
 
+		#if ENABLE_TOXIC_CHEATS
 		main->AddItem(globalsGroup);
+		#endif
 		main->AddItem(toolsGroup);
+		#if ENABLE_TOXIC_CHEATS
 		main->AddItem(specialAbilityGroup);
+		#endif
 		main->AddItem(wantedGroup);
+		#if ENABLE_TOXIC_CHEATS
 		main->AddItem(movementGroup);
+		#endif
 		AddCategory(std::move(main));
 
+		#if ENABLE_TOXIC_CHEATS
 		AddCategory(BuildWeaponsMenu());
-
+		#endif
 		auto outfitEditorCategory = YimMenu::CreateOutfitsMenu();
 		AddCategory(std::move(outfitEditorCategory));
 	}

@@ -23,6 +23,7 @@ namespace YimMenu::Submenus
 				});
 			}
 
+			#if ENABLE_TOXIC_CHEATS
 			static int interiorIndex = 0;
 			ImGui::InputInt("interiorIndex", &interiorIndex);
 
@@ -56,6 +57,7 @@ namespace YimMenu::Submenus
 					DoTeamSwap.Call<void>(team, true);
 				});
 			}
+			#endif
 		}));
 
 		return misc;

@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/LoopedCommand.hpp"  
 #include "game/backend/Self.hpp"  
 #include "game/gta/Pools.hpp"  
@@ -24,3 +25,4 @@ namespace YimMenu::Features
 
 	static ExplosionRadius _ExplosionRadius{"explosionradius", "Weapon Explosion Radius", "Modifying Weapon Explosion Radius"};  
 }
+#endif

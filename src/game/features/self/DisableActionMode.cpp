@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/LoopedCommand.hpp"
 #include "game/backend/Self.hpp"
 #include "game/gta/Natives.hpp"
@@ -16,3 +17,5 @@ namespace YimMenu::Features
 
 	static DisableActionMode _DisableActionMode{"disableactionmode", "Disable Action Mode", "Disables the player's janky movement during combat."};
 };
+
+#endif

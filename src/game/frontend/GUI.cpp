@@ -28,11 +28,13 @@ namespace YimMenu
 			    Notifications::Draw();
 		    },
 		    -2);
+		#if TOXIC_CHEATS
 		Renderer::AddRendererCallBack(
 		    [&] {
 			    ESP::Draw();
 		    },
 		    -3);
+		#endif
 		Renderer::AddRendererCallBack(
 		    [&] {
 			    ChatDisplay::Draw();
@@ -63,7 +65,7 @@ namespace YimMenu
 	void GUI::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 	{
 		if (msg == WM_KEYUP 
-			&& (wparam == VK_INSERT || (wparam == VK_OEM_5 && (GetKeyState(VK_CONTROL) & 0x8000) != 0)))
+			&& (wparam == VK_PAUSE || wparam == VK_INSERT || (wparam == VK_OEM_5 && (GetKeyState(VK_CONTROL) & 0x8000) != 0)))
 		{
 			// Persist and restore the cursor position between menu instances
 			static POINT CursorCoords{};

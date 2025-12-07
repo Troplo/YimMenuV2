@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "game/backend/Self.hpp"
 #include "game/commands/PlayerCommand.hpp"
 
@@ -16,3 +17,4 @@ namespace YimMenu::Features
 
 	static TeleportToPlayer _TeleportToPlayer{"tptoplayer", "Teleport to Player", "Teleports you to the selected player"};
 }
+#endif

@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/BoolCommand.hpp"
 #include "core/commands/IntCommand.hpp"
 #include "game/commands/PlayerCommand.hpp"
@@ -29,3 +30,4 @@ namespace YimMenu::Features
 
 	static SetBounty _SetBounty{"setbounty", "Set Bounty", "Sets the specified bounty to the player"};
 }
+#endif

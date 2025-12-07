@@ -1,3 +1,4 @@
+#if TOXIC_CHEATS
 #include "core/commands/Command.hpp"
 #include "core/commands/ListCommand.hpp"
 #include "core/commands/LoopedCommand.hpp"
@@ -133,3 +134,4 @@ namespace YimMenu::Features
 
 	static ForceWeather _ForceWeather{"forceweather", "Force Weather", "Forces the specified weather. Note that this effect is local and cannot be seen by other players"};
 }
+#endif
