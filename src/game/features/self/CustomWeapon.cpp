@@ -1,4 +1,4 @@
-#if TOXIC_CHEATS
+#if ENABLE_TOXIC_CHEATS
 #include "CustomWeapon.hpp"
 #include "core/backend/FiberPool.hpp"
 #include "core/backend/ScriptMgr.hpp"

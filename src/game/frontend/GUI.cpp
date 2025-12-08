@@ -28,7 +28,7 @@ namespace YimMenu
 			    Notifications::Draw();
 		    },
 		    -2);
-		#if TOXIC_CHEATS
+		#if ENABLE_TOXIC_CHEATS
 		Renderer::AddRendererCallBack(
 		    [&] {
 			    ESP::Draw();

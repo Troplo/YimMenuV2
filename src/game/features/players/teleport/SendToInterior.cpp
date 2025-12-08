@@ -1,4 +1,4 @@
-#if TOXIC_CHEATS
+#if ENABLE_TOXIC_CHEATS
 #include "game/backend/Self.hpp"
 #include "game/commands/PlayerCommand.hpp"
 #include "core/commands/ListCommand.hpp"

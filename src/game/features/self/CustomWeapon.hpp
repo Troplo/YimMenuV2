@@ -1,5 +1,6 @@
-#if ENABLE_TOXIC_CHEATS
 #pragma once
+#include "../src/features.h"
+#if ENABLE_TOXIC_CHEATS
 #include "core/commands/BoolCommand.hpp"
 #include "core/commands/ColorCommand.hpp"
 #include "core/commands/IntCommand.hpp"

@@ -1,4 +1,4 @@
-#if TOXIC_CHEATS
+#if ENABLE_TOXIC_CHEATS
 #include "core/commands/Command.hpp"
 #include "game/gta/Pools.hpp"
 #include "game/gta/Object.hpp"

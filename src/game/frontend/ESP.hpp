@@ -1,4 +1,4 @@
-#if TOXIC_CHEATS
+#if ENABLE_TOXIC_CHEATS
 #pragma once
 #include "game/gta/Player.hpp"
 

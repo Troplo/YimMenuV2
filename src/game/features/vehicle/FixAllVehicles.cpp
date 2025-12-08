@@ -1,4 +1,4 @@
-#if TOXIC_CHEATS
+#if ENABLE_TOXIC_CHEATS
 #include "core/commands/Command.hpp"
 #include "core/frontend/Notifications.hpp"
 #include "game/backend/PersonalVehicles.hpp"

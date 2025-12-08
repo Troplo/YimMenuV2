@@ -110,6 +110,8 @@ namespace YimMenu::Submenus
 	{
 		memset(&value, 0, sizeof(StatValue));
 
+		LOG(INFO) << "Stat type: " << (int)data->GetType();
+
 		switch (data->GetType())
 		{
 		case sStatData::Type::_BOOL:
@@ -119,11 +121,29 @@ namespace YimMenu::Submenus
 			value.m_AsFloat = data->GetFloat();
 			return;
 		case sStatData::Type::INT:
-		case sStatData::Type::UINT32:
-		case sStatData::Type::UINT16:
+		case sStatData::Type::STAT_TYPE_TIME:
+		case sStatData::Type::STAT_TYPE_CASH:
+		case sStatData::Type::STAT_TYPE_PERCENT:
+		case sStatData::Type::STAT_TYPE_DEGREES:
+		case sStatData::Type::STAT_TYPE_WEIGHT:
+		case sStatData::Type::STAT_TYPE_MILES:
+		case sStatData::Type::STAT_TYPE_METERS:
+		case sStatData::Type::STAT_TYPE_FEET:
+		case sStatData::Type::STAT_TYPE_SECONDS:
+		case sStatData::Type::STAT_TYPE_CHART:
+		case sStatData::Type::STAT_TYPE_VELOCITY:
+		case sStatData::Type::STAT_TYPE_TEXTLABEL:
+		case sStatData::Type::STAT_TYPE_PROFILE_SETTING:
 		case sStatData::Type::UINT8:
+		case sStatData::Type::UINT16:
 			value.m_AsInt = data->GetInt();
 			return;
+
+		case sStatData::Type::UINT32:
+		case sStatData::Type::STAT_TYPE_POS:
+		case sStatData::Type::STAT_TYPE_DATE:
+		case sStatData::Type::STAT_TYPE_PACKED:
+		case sStatData::Type::STAT_TYPE_USERID:
 		case sStatData::Type::INT64:
 			value.m_AsU64 = data->GetInt64();
 			return;
@@ -149,11 +169,28 @@ namespace YimMenu::Submenus
 			STATS::STAT_SET_FLOAT(hash, value.m_AsFloat, true);
 			return;
 		case sStatData::Type::INT:
-		case sStatData::Type::UINT32:
-		case sStatData::Type::UINT16:
+		case sStatData::Type::STAT_TYPE_TIME:
+		case sStatData::Type::STAT_TYPE_CASH:
+		case sStatData::Type::STAT_TYPE_PERCENT:
+		case sStatData::Type::STAT_TYPE_DEGREES:
+		case sStatData::Type::STAT_TYPE_WEIGHT:
+		case sStatData::Type::STAT_TYPE_MILES:
+		case sStatData::Type::STAT_TYPE_METERS:
+		case sStatData::Type::STAT_TYPE_FEET:
+		case sStatData::Type::STAT_TYPE_SECONDS:
+		case sStatData::Type::STAT_TYPE_CHART:
+		case sStatData::Type::STAT_TYPE_VELOCITY:
+		case sStatData::Type::STAT_TYPE_TEXTLABEL:
+		case sStatData::Type::STAT_TYPE_PROFILE_SETTING:
 		case sStatData::Type::UINT8:
+		case sStatData::Type::UINT16:
 			STATS::STAT_SET_INT(hash, value.m_AsInt, true);
 			return;
+		case sStatData::Type::UINT32:
+		case sStatData::Type::STAT_TYPE_POS:
+		case sStatData::Type::STAT_TYPE_DATE:
+		case sStatData::Type::STAT_TYPE_PACKED:
+		case sStatData::Type::STAT_TYPE_USERID:
 		case sStatData::Type::INT64:
 			data->SetInt64(value.m_AsU64); // TODO this isn't a good idea! natives can't set this
 			return;
@@ -200,13 +237,29 @@ namespace YimMenu::Submenus
 		case sStatData::Type::UINT32:
 		case sStatData::Type::UINT16:
 		case sStatData::Type::UINT8:
+		case sStatData::Type::STAT_TYPE_TIME:
+		case sStatData::Type::STAT_TYPE_CASH:
+		case sStatData::Type::STAT_TYPE_PERCENT:
+		case sStatData::Type::STAT_TYPE_DEGREES:
+		case sStatData::Type::STAT_TYPE_WEIGHT:
+		case sStatData::Type::STAT_TYPE_MILES:
+		case sStatData::Type::STAT_TYPE_METERS:
+		case sStatData::Type::STAT_TYPE_FEET:
+		case sStatData::Type::STAT_TYPE_SECONDS:
+		case sStatData::Type::STAT_TYPE_CHART:
+		case sStatData::Type::STAT_TYPE_VELOCITY:
+		case sStatData::Type::STAT_TYPE_TEXTLABEL:
+		case sStatData::Type::STAT_TYPE_PROFILE_SETTING:
 		{
 			auto _int = std::strtol(value.data(), nullptr, 10);
 			STATS::STAT_SET_INT(hash, _int, true);
 			return;
 		}
-		case sStatData::Type::INT64:
-		{
+		case sStatData::Type::STAT_TYPE_POS:
+		case sStatData::Type::STAT_TYPE_DATE:
+		case sStatData::Type::STAT_TYPE_PACKED:
+		case sStatData::Type::STAT_TYPE_USERID:
+		case sStatData::Type::INT64: {
 			auto int64_ = std::strtoll(value.data(), nullptr, 10);
 			data->SetInt64(int64_); // TODO this isn't a good idea! natives can't set this
 			return;
@@ -230,6 +283,7 @@ namespace YimMenu::Submenus
 	static bool RenderStatEditor(StatValue& value, sStatData* data)
 	{
 		ImGui::SetNextItemWidth(150.f);
+		LOG(VERBOSE) << (int)data->GetType();
 		switch (data->GetType())
 		{
 		case sStatData::Type::_BOOL:
@@ -237,8 +291,25 @@ namespace YimMenu::Submenus
 		case sStatData::Type::FLOAT:
 			return ImGui::InputFloat("Value", &value.m_AsFloat);
 		case sStatData::Type::INT:
+		case sStatData::Type::STAT_TYPE_TIME:
+		case sStatData::Type::STAT_TYPE_CASH:
+		case sStatData::Type::STAT_TYPE_PERCENT:
+		case sStatData::Type::STAT_TYPE_DEGREES:
+		case sStatData::Type::STAT_TYPE_WEIGHT:
+		case sStatData::Type::STAT_TYPE_MILES:
+		case sStatData::Type::STAT_TYPE_METERS:
+		case sStatData::Type::STAT_TYPE_FEET:
+		case sStatData::Type::STAT_TYPE_SECONDS:
+		case sStatData::Type::STAT_TYPE_CHART:
+		case sStatData::Type::STAT_TYPE_VELOCITY:
+		case sStatData::Type::STAT_TYPE_TEXTLABEL:
+		case sStatData::Type::STAT_TYPE_PROFILE_SETTING:
 			return ImGui::InputInt("Value", &value.m_AsInt);
 		case sStatData::Type::UINT32:
+		case sStatData::Type::STAT_TYPE_POS:
+		case sStatData::Type::STAT_TYPE_DATE:
+		case sStatData::Type::STAT_TYPE_PACKED:
+		case sStatData::Type::STAT_TYPE_USERID:
 			return ImGui::InputScalar("Value", ImGuiDataType_U32, &value.m_AsInt);
 		case sStatData::Type::UINT16:
 			return ImGui::InputScalar("Value", ImGuiDataType_U16, &value.m_AsInt);

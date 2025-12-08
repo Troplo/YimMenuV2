@@ -5,17 +5,36 @@ class sStatData
 public:
 	enum class Type
 	{
-		INT = 1,
-		FLOAT,
-		STRING,
-		_BOOL,
-		UINT8,
-		UINT16,
-		UINT32,
-		UINT64,
-		DATE = 20,
-		POS,
-		INT64 = 26,
+		STAT_TYPE_NONE = 0,
+
+		INT       = 1,
+		FLOAT     = 2,
+		STRING    = 3,
+		_BOOL   = 4,
+		UINT8     = 5,
+		UINT16    = 6,
+		UINT32    = 7,
+		UINT64    = 8,
+
+		STAT_TYPE_TIME      = 9,
+		STAT_TYPE_CASH      = 10,
+		STAT_TYPE_PERCENT   = 11,
+		STAT_TYPE_DEGREES   = 12,
+		STAT_TYPE_WEIGHT    = 13,
+		STAT_TYPE_MILES     = 14,
+		STAT_TYPE_METERS    = 15,
+		STAT_TYPE_FEET      = 16,
+		STAT_TYPE_SECONDS   = 17,
+		STAT_TYPE_CHART     = 18,
+		STAT_TYPE_VELOCITY  = 19,
+		STAT_TYPE_DATE      = 20,
+		STAT_TYPE_POS       = 21,
+
+		STAT_TYPE_TEXTLABEL = 22,
+		STAT_TYPE_PACKED    = 23,
+		STAT_TYPE_USERID    = 24,
+		STAT_TYPE_PROFILE_SETTING = 25,
+		INT64    = 26,
 	};
 
 	// it isn't recommended to call the SetXXX() functions directly, use the natives instead

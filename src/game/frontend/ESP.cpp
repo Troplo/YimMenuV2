@@ -1,4 +1,4 @@
-#if TOXIC_CHEATS
+#if ENABLE_TOXIC_CHEATS
 #include "ESP.hpp"
 #include "game/gta/Object.hpp"
 #include "common.hpp"

@@ -1,5 +1,7 @@
-#if ENABLE_TOXIC_CHEATS
 #pragma once
+#include "../src/features.h"
+#if ENABLE_TOXIC_CHEATS
+
 
 namespace rage
 {

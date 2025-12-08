@@ -6,7 +6,7 @@ find . -type f -name "*.cpp" | while read file; do
     # Make a backup first
     #cp "$file" "$file.bak"
 
-    # Prepend #if TOXIC_CHEATS and append #endif
-    sed -i '1i#if TOXIC_CHEATS' "$file"
+    # Prepend #if ENABLE_TOXIC_CHEATS and append #endif
+    sed -i '1i#if ENABLE_TOXIC_CHEATS' "$file"
     echo -e '\n#endif' >> "$file"
 done

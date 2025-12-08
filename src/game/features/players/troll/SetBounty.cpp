@@ -1,4 +1,4 @@
-#if TOXIC_CHEATS
+#if ENABLE_TOXIC_CHEATS
 #include "core/commands/BoolCommand.hpp"
 #include "core/commands/IntCommand.hpp"
 #include "game/commands/PlayerCommand.hpp"

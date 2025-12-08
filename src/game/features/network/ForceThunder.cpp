@@ -1,4 +1,4 @@
-#if TOXIC_CHEATS
+#if ENABLE_TOXIC_CHEATS
 #include "core/commands/LoopedCommand.hpp"
 #include "game/backend/Self.hpp"
 #include "game/gta/Scripts.hpp"

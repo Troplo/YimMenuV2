@@ -1,4 +1,4 @@
-#if TOXIC_CHEATS
+#if ENABLE_TOXIC_CHEATS
 #include "game/commands/PlayerCommand.hpp"
 #include "core/backend/ScriptMgr.hpp"
 #include "game/gta/Scripts.hpp"

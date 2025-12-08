@@ -11,6 +11,12 @@
 
 namespace YimMenu
 {
+	int ParagonMoney::GetCurrentSlot()
+	{
+		auto statValue = Pointers.StatsMgr->GetStat("MPPLY_LAST_MP_CHAR"_J);
+		return statValue->GetInt();
+	}
+
 	bool ParagonMoney::UpdateStat(joaat_t stat, long long amount, UpdateType type)
 	{
 		// HARD LIMIT
@@ -58,8 +64,10 @@ namespace YimMenu
 		return true;
 	}
 
-	bool ParagonMoney::EarnCash(long long _amount, bool toBank, const joaat_t statId, joaat_t multiplierTunable)
+	bool ParagonMoney::EarnCash(long long _amount, bool toBank, joaat_t statId, joaat_t multiplierTunable)
 	{
+		LOG(VERBOSE) << "EARN CASH";
+		LOG(VERBOSE) << "AMOUNT" << _amount;
 		auto amount = _amount;
 
 		if (amount > 0)
@@ -69,14 +77,17 @@ namespace YimMenu
 				return false;
 			};
 		}
-
-		if (statId)
-		{
-			if (!UpdateStat(statId, amount, INCREMENT))
-			{
-				return false;
-			}
-		}
+		//
+		// if (statId)
+		// {
+		//
+		// 	int slot = MISC::GET_CHOSEN_MP_CHARACTER_SLOT();
+		// 	Joaat(slot == 0 ? "MP0_" : "MP1_" + statId);
+		// 	if (!UpdateStat(statId, amount, INCREMENT))
+		// 	{
+		// 		return false;
+		// 	}
+		// }
 
 		if (toBank)
 		{
@@ -88,7 +99,7 @@ namespace YimMenu
 		else
 		{
 			// wallet
-			int slot = MISC::GET_CHOSEN_MP_CHARACTER_SLOT();
+			int slot = GetCurrentSlot();
 			joaat_t hash = 0;
 			if (slot == 0)
 			{
@@ -226,7 +237,9 @@ void ParagonMoney::NETWORK_EARN_FROM_JOB(rage::scrNativeCallContext* src)
 {
     LOG(INFO) << __FUNCTION__;
     const auto amount = src->GetArg<int>(0);
+    // EarnCash(amount, false, "MONEY_EARN_JOBS"_J, "TROPLOROS_MONEY_MULTIPLIER_JOB_HARD_LIMIT"_J);
     EarnCash(amount, false, "MONEY_EARN_JOBS"_J, "TROPLOROS_MONEY_MULTIPLIER_JOB_HARD_LIMIT"_J);
+	MONEY::NETWORK_EARN_FROM_JOB(src->GetArg<int>(0), src->GetArg<const char*>(1));
 }
 
 void ParagonMoney::NETWORK_EARN_FROM_JOBX2(rage::scrNativeCallContext* src)
