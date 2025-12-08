@@ -5,7 +5,10 @@
 #include "types/script/scrNativeHandler.hpp"
 #include "types/rage/ObfVar.hpp"
 #include "core/memory/BytePatches.hpp"
+#include "core/memory/PointerCalculator.hpp"
 
+
+class CNetworkShoppingMgr;
 namespace rage
 {
 	template<typename T>
@@ -128,7 +131,7 @@ namespace YimMenu
 		Functions::GetPackedStatData GetPackedStatData;
 		rage::netCatalog* NetCatalog;
 		Functions::GetCatalogItem GetCatalogItem;
-		void** TransactionMgr;
+		CNetworkShoppingMgr** TransactionMgr;
 		Functions::GetActiveBasket GetActiveBasket;
 		PoolEncryption* PedPool;
 		PoolEncryption* ObjectPool;

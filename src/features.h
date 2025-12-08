@@ -5,7 +5,7 @@
 #define ENABLE_TOXIC_CHEATS 0
 #define ENABLE_UI 1
 #define ENABLE_OVERLAY 0
-#define ENABLE_PARAGON_DEBUGGING 0
+#define ENABLE_PARAGON_DEBUGGING 1
 // not finished for enhanced
 #define ENABLE_PARAGON_SDK 0
 

@@ -15,15 +15,21 @@ include(cmake/luajit.cmake)
 set(SRC_DIR "${PROJECT_SOURCE_DIR}/src")
 file(GLOB_RECURSE SRC_FILES
     "${SRC_DIR}/**.hpp"
+    "${SRC_DIR}/**.h"
     "${SRC_DIR}/**.cpp"    
 )
 
+
 add_library(${PROJECT_NAME} MODULE ${SRC_FILES}
         src/core/util/CurrentModule.h
-        src/features.h)
+        src/features.h
+        src/game/paragon/natives/ParagonMoney.cpp
+        src/game/paragon/natives/ParagonMoney.h
+        src/types/game_files/CNetworkShoppingMgr.h)
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 23)
 
 target_precompile_headers(${PROJECT_NAME} PUBLIC "${SRC_DIR}/common.hpp")
+target_precompile_headers(${PROJECT_NAME} PUBLIC "${SRC_DIR}/features.h")
 
 add_compile_definitions(
     _CRT_SECURE_NO_WARNINGS
