@@ -27,6 +27,7 @@ namespace YimMenu
 
 	static void TransactionHook(rage::scrNativeCallContext* ctx)
 	{
+		LOG(VERBOSE) << "BEGIN SERVICE" << ctx->GetArg<int>(0) << ctx->GetArg<int>(1) << ctx->GetArg<int>(2) << ctx->GetArg<int>(3) << ctx->GetArg<int>(4) << ctx->GetArg<int>(5);
 		if (ctx->GetArg<int>(3) == -50712147)
 		{
 			return ctx->SetReturnValue(FALSE);
