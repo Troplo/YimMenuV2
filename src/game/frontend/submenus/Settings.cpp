@@ -100,6 +100,7 @@ namespace YimMenu::Submenus
 		overlay->AddItem(std::make_shared<ConditionalItem>("overlay"_J, std::make_shared<BoolCommandItem>("overlayfps"_J)));
 
 		chat->AddItem(std::make_shared<BoolCommandItem>("clearchat"_J));
+		chat->AddItem(std::make_shared<FloatCommandItem>("chatfontsize"_J));
 
 		#if ENABLE_TOXIC_CHEATS
 		game->AddItem(playerEsp);

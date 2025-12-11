@@ -1,5 +1,6 @@
 #include "core/backend/ScriptMgr.hpp"
 #include "core/commands/Command.hpp"
+#include "core/commands/FloatCommand.hpp"
 #include "core/frontend/Notifications.hpp"
 #include "core/frontend/widgets/imgui_colors.h"
 #include "game/backend/Players.hpp"
@@ -20,7 +21,7 @@ namespace
 		font_flags |= 64;
 		MISC::NEXT_ONSCREEN_KEYBOARD_RESULT_WILL_DISPLAY_USING_THESE_FONTS(font_flags);
 		MISC::DISPLAY_ONSCREEN_KEYBOARD(0, title.data(), nullptr, buf, nullptr, nullptr, nullptr, max_length);
-
+		PAD::DISABLE_ALL_CONTROL_ACTIONS(0);
 		while (true)
 		{
 			YimMenu::ChatDisplay::MarkAccessed();
@@ -35,6 +36,7 @@ namespace
 			else if (update_res == 2 || update_res == 3)
 			{
 				MISC::CANCEL_ONSCREEN_KEYBOARD();
+				PAD::ENABLE_ALL_CONTROL_ACTIONS(0);
 				return false;
 			}
 		}
@@ -93,6 +95,7 @@ namespace YimMenu::Features
 			ChatDisplay::Clear();
 		}
 	};
+
 
 	static Chat _Chat{"chathelper", "Chat", "Use this to open the chat"};
 	static ClearChat _ClearChat{"clearchat", "Clear Chat", "Use this to clear the chat"};
