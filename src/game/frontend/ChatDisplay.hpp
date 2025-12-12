@@ -20,12 +20,8 @@ namespace YimMenu
 		float m_Opacity = 1.0f;
 		std::vector<Message> m_Messages = {};
 		std::mutex m_Mutex;
-		float m_Size = 0;
-		ImFont* m_CurrentFont = nullptr;
 
 		void ShowImpl(std::string sender, std::string message, ImColor color);
-		const ImWchar* GetGlyphRangesCyrillicOnly();
-		ImFont* CreateFontWithCyrillicSupport(ImGuiIO& io, float size);
 		void DrawImpl();
 		void ClearImpl();
 		void MarkAccessedImpl();
@@ -58,6 +54,4 @@ namespace YimMenu
 		}
 	};
 
-	static bool g_ChatInputActive = false;
-	static char g_ChatBuffer[256] = {};
 }
