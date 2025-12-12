@@ -39,6 +39,7 @@ namespace YimMenu::Submenus
 		toolsGroup->AddItem(std::make_shared<CommandItem>("skipcutscene"_J));
 		toolsGroup->AddItem(std::make_shared<CommandItem>("skipconversation"_J));
 		toolsGroup->AddItem(std::make_shared<CommandItem>("suicide"_J));
+		toolsGroup->AddItem(std::make_shared<CommandItem>("ragdollself"_J));
 		#if ENABLE_TOXIC_CHEATS
 		toolsGroup->AddItem(std::make_shared<CommandItem>("heal"_J));
 		toolsGroup->AddItem(std::make_shared<CommandItem>("cleardamage"_J));
