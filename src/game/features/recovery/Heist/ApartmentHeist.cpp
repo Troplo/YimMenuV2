@@ -1,4 +1,4 @@
-#if ENABLE_TOXIC_CHEATS
+#if ENABLE_TOXIC_CHEATS || 1
 #include "core/commands/IntCommand.hpp"
 #include "core/commands/Command.hpp"
 #include "game/gta/Stats.hpp"
