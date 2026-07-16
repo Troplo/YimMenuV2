@@ -467,6 +467,49 @@ namespace YimMenu
 			GameSkeletonUpdate = addr.As<PVOID>();
 		});
 
+		static constexpr auto updateNetworkTransitionPtrn = Pattern<"41 57 41 56 41 55 41 54 56 57 55 53 48 81 EC ? ? ? ? 49 89 CE E8 ? ? ? ? 89 C5">("UpdateNetworkTransition");
+		scanner.Add(updateNetworkTransitionPtrn, [this](PointerCalculator addr) {
+			UpdateNetworkTransition = addr.As<Functions::UpdateNetworkTransition*>();
+		});
+
+		static constexpr auto commandsArgsListPtrn = Pattern<"48 8B 1D ? ? ? ? EB ? 31 ED">("CommandsArgsList");
+		scanner.Add(commandsArgsListPtrn, [this](PointerCalculator addr) {
+			CommandsArgsList = addr.Add(3).Rip().As<void**>();
+		});
+
+		// This is a post launch encrypted function
+		// static constexpr auto encryptedFunctionPtrn = Pattern<"E8 ? ? ? ? E9 ? ? ? ? 4C 89 F1 E8 ? ? ? ? E9 ? ? ? ? 4C 89 F1 E8 ? ? ? ? E9 ? ? ? ? 49 8B 96">("EncryptedFunction");
+		// scanner.Add(encryptedFunctionPtrn, [this](PointerCalculator addr) {
+		// 	CrashingThing = addr.Add(1).Rip().As<void**>();
+		// });
+
+		// TODO: OUT OF SCOPE, WILL CHANGE EVERY UPDATE
+		static constexpr auto encryptor1Ptrn = Pattern<"E8 ? ? ? ? E9 ? ? ? ? 48 8B 45 ? 48 8D 95 ? ? ? ? 48 89 C1 E8 ? ? ? ? E9 ? ? ? ? 48 89 C6">("Encryptor1");
+		scanner.Add(encryptor1Ptrn, [this](PointerCalculator addr) {
+			Encryptor1 = addr.Add(1).Rip().As<Functions::Encryptor1*>();
+		});
+
+		// TODO: OUT OF SCOPE, WILL CHANGE EVERY UPDATE
+		static constexpr auto packerListPtrn = Pattern<"48 8D 05 ? ? ? ? 48 89 45 ? B8 ? ? ? ? 85 C0 0F 85 ? ? ? ? E9 ? ? ? ? 84 C0 0F 84 ? ? ? ? E9 ? ? ? ? 50">("PackerList");
+		scanner.Add(packerListPtrn, [this](PointerCalculator addr) {
+			auto list = addr.Add(7).As<std::uint8_t*>();
+			PackerList = list;
+		});
+
+		// TODO: OUT OF SCOPE, WILL CHANGE EVERY UPDATE
+		static constexpr auto networkFunctionDataPtrn = Pattern<"48 8D 05 ? ? ? ? 48 89 45 ? 48 8D 85 ? ? ? ? 48 89 45 ? 48 8B 45 ? 48 89 45 ? 33 C0 89 85 ? ? ? ? 89 85 ? ? ? ? 48 8D 15 ? ? ? ? 48 89 95 ? ? ? ? 48 8B 95 ? ? ? ? ? ? 89 4D ? 8B 52 ? 89 55 ? 89 45 ? 89 45 ? 48 8D 05 ? ? ? ? 48 89 45 ? B8 ? ? ? ? 85 C0 0F 85 ? ? ? ? E9 ? ? ? ? 48 89 C6 ? ? ? 48 8D 15">("NetworkFunction");
+		scanner.Add(networkFunctionDataPtrn, [this](PointerCalculator addr) {
+			auto list = addr.Add(3).Rip().As<std::uint8_t*>();
+			NetworkFunctionData = list;
+		});
+
+		// TODO: OUT OF SCOPE, WILL CHANGE EVERY UPDATE
+		static constexpr auto networkFunctionLocationsPtrn = Pattern<"48 8D 05 ? ? ? ? 48 89 45 ? B8 ? ? ? ? 85 C0 0F 85 ? ? ? ? E9 ? ? ? ? 48 89 C6 ? ? ? 48 8D 15">("NetworkFunctionLocations");
+		scanner.Add(networkFunctionLocationsPtrn, [this](PointerCalculator addr) {
+			auto list = addr.Add(3).Rip().As<std::uint8_t*>();
+			NetworkFunctionLocations = list;
+		});
+
 		if (!scanner.Scan())
 		{
 			LOG(FATAL) << "Some patterns could not be found, unloading.";

@@ -27,13 +27,18 @@
 #include "game/features/self/OpenGunLocker.hpp"
 #include "game/features/recovery/DailyActivities.hpp"
 #include "game/paragon/natives/native_hooks.h"
+#include "game/hooks/Anticheat/UnpackHandler.h"
+#include "game/hooks/Anticheat/VehPackHandler.h"
+
+#include <tlhelp32.h>
 
 namespace YimMenu
 {
 	DWORD Main(void*)
 	{
 		HMODULE hModule = nullptr;
-		while (!hModule) {
+		while (!hModule)
+		{
 			hModule = GetModuleHandle("Paragon.Sdk.dll");
 			Sleep(100);
 		}
@@ -60,7 +65,9 @@ namespace YimMenu
 			goto EARLY_UNLOAD;
 
 		AnticheatBypass::RunOnStartup();
-
+		VehPackHandler::InitializeVehHooks(
+			reinterpret_cast<void*>(Pointers.PackerList),
+			reinterpret_cast<void*>(Pointers.Encryptor1));
 		if (!Renderer::Init())
 			goto EARLY_UNLOAD;
 
@@ -84,9 +91,9 @@ namespace YimMenu
 		ScriptMgr::AddScript(std::make_unique<Script>(&LuaManager::RunScript));
 		ScriptMgr::AddScript(std::make_unique<Script>(&HotkeySystem::RunScript));
 		ScriptMgr::AddScript(std::make_unique<Script>(&Commands::RunScript));
-		#if ENABLE_TOXIC_CHEATS
+#if ENABLE_TOXIC_CHEATS
 		ScriptMgr::AddScript(std::make_unique<Script>(&Features::SavePersonalVehicle::RunScript));
-		#endif
+#endif
 		ScriptMgr::AddScript(std::make_unique<Script>(&Features::OpenGunLocker::RunScript));
 		ScriptMgr::AddScript(std::make_unique<Script>(&Features::OpenStreetDealerMenu::RunScript));
 		ScriptMgr::AddScript(std::make_unique<Script>(&SavedPlayers::RunScript));
@@ -94,10 +101,12 @@ namespace YimMenu
 		if (!Pointers.LateInit())
 			LOG(WARNING) << "Socialclub patterns failed to load";
 
+		UnpackHandler::DoUnpack();
+
 		Notifications::Show("Paragon", "Press PAUSE BREAK to open menu options.", NotificationType::Success);
 
 		if (InWine().value_or(false))
-		    LOG(INFO) << "Running in Wine!";
+			LOG(INFO) << "Running in Wine!";
 
 		while (g_Running)
 		{

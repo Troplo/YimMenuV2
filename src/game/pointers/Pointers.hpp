@@ -73,6 +73,7 @@ namespace YimMenu
 		using GetPresenceAttributes = bool (*)(int profile_index, rage::rlScGamerHandle* handles, int num_handles, rage::rlQueryPresenceAttributesContext** contexts, int count, rage::rlScTaskStatus* state);
 		using GetAvatars = bool (*)(rage::rlGetAvatarsContext* context, rage::rlGetAvatarsPlayerList* players);
 		using AssistedAimFindNewTarget = bool (*)(__int64 a1);
+		using Encryptor1 = void*(void* in, void* out, uint32_t size);
 	}
 
 	struct PointerData
@@ -175,6 +176,11 @@ namespace YimMenu
 		PVOID MatchmakingSessionDetailSendResponse;
 		PVOID g_rlPc;
 		PVOID GameSkeletonUpdate;
+		void** CommandsArgsList;
+		void* Encryptor1;
+		void* PackerList;
+		void* NetworkFunctionLocations;
+		void* NetworkFunctionData;
 	};
 
 	struct Pointers : PointerData

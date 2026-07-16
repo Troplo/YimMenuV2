@@ -1,5 +1,7 @@
 #include "core/commands/LoopedCommand.hpp"
 #include "core/commands/Commands.hpp"
+#include "core/hooking/BaseHook.hpp"
+#include "core/hooking/DetourHook.hpp"
 #include "core/util/Joaat.hpp"
 #include "game/backend/Self.hpp"
 #include "game/gta/Natives.hpp"
