@@ -60,6 +60,8 @@ namespace YimMenu::Submenus
 			#endif
 		}));
 
+		misc->AddItem(std::make_shared<CommandItem>("dumpdatahash"_J));
+
 		return misc;
 	}
 }

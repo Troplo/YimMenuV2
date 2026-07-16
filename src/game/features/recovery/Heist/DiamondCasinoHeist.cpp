@@ -8,6 +8,7 @@
 #include "game/gta/ScriptLocal.hpp"
 #include "core/backend/ScriptMgr.hpp"
 #include "game/backend/Tunables.hpp"
+#include "game/backend/Self.hpp"
 
 namespace YimMenu::Features
 {
@@ -24,7 +25,7 @@ namespace YimMenu::Features
 
 			virtual void OnCall() override
 			{
-				auto base = ScriptGlobal(1973231).At(1497).At(736).At(92);
+				auto base = ScriptGlobal(1973762).At(1497).At(736).At(92);
 
 				*base.At(0, 1).As<int*>() = _DiamondCasinoHeistCut1.GetState();
 				*base.At(1, 1).As<int*>() = _DiamondCasinoHeistCut2.GetState();
@@ -39,7 +40,7 @@ namespace YimMenu::Features
 
 			virtual void OnCall() override
 			{
-				auto base = ScriptGlobal(1977594);
+				auto base = ScriptGlobal(1978125);
 
 				for (int i = 0; i <= 3; i++)
 				{
@@ -303,7 +304,7 @@ namespace YimMenu::Features
 			virtual void OnCall() override
 			{
 				if (auto thread = Scripts::FindScriptThread("fm_mission_controller"_J))
-					*ScriptLocal(thread, 20395).At(2686).As<int*>() = _DiamondCasinoHeistActualTake.GetState();
+					*ScriptLocal(thread, 20412).At(2686).As<int*>() = _DiamondCasinoHeistActualTake.GetState();
 			}
 		};
 
@@ -315,8 +316,8 @@ namespace YimMenu::Features
 			{
 				if (auto thread = Scripts::FindScriptThread("fm_mission_controller"_J))
 				{
-					*ScriptLocal(thread, 54042).As<int*>() = 5;
-					*ScriptLocal(thread, 55108).As<int*>() = 5;
+					*ScriptLocal(thread, 55028).As<int*>() = 5;
+					*ScriptLocal(thread, 56098).As<int*>() = 5;
 				}
 			}
 		};
@@ -328,7 +329,21 @@ namespace YimMenu::Features
 			virtual void OnCall() override
 			{
 				if (auto thread = Scripts::FindScriptThread("fm_mission_controller"_J))
-					*ScriptLocal(thread, 10551).At(7).As<int*>() = *ScriptLocal(thread, 10551).At(37).As<int*>();
+					*ScriptLocal(thread, 10567).At(7).As<int*>() = *ScriptLocal(thread, 10567).At(37).As<int*>();
+			}
+		};
+
+		class SoloMantrap : public Command
+		{
+			using Command::Command;
+
+			virtual void OnCall() override
+			{
+				if (auto thread = Scripts::FindScriptThread("fm_mission_controller"_J))
+				{
+					*ScriptLocal(thread, 32785).At(Self::GetPlayer().GetId(), 294).At(143).As<int*>() = 8;
+					*ScriptLocal(thread, 63640).As<int*>() = 5;
+				}
 			}
 		};
 
@@ -343,12 +358,12 @@ namespace YimMenu::Features
 					Scripts::ForceScriptHost(thread);
 					ScriptMgr::Yield(500ms);
 
-					*ScriptLocal(thread, 20395).At(1740).At(0, 1).As<int*>() = 80;
-					*ScriptLocal(thread, 20395).At(2686).As<int*>() = 4443220;
-					*ScriptLocal(thread, 20395).At(1062).As<int*>() = 5;
-					*ScriptLocal(thread, 20395).As<int*>() = 12;
-					*ScriptLocal(thread, 29016).At(0, 1).As<int*>() = 99999;
-					*ScriptLocal(thread, 32472).At(0, 294).At(68).As<int*>() = 99999;
+					*ScriptLocal(thread, 20412).At(1740).At(0, 1).As<int*>() = 80;
+					*ScriptLocal(thread, 20412).At(2686).As<int*>() = 4443220;
+					*ScriptLocal(thread, 20412).At(1062).As<int*>() = 5;
+					*ScriptLocal(thread, 20412).As<int*>() = 12;
+					*ScriptLocal(thread, 29326).At(0, 1).As<int*>() = 99999;
+					*ScriptLocal(thread, 32785).At(0, 294).At(68).As<int*>() = 99999;
 				}
 			}
 		};
@@ -360,6 +375,7 @@ namespace YimMenu::Features
 		static SetActualTake _DiamondCasinoHeistSetActualTake{"diamondcasinoheistsetactualtake", "Set Actual Take", "Updates actual take"};
 		static SkipHacking _DiamondCasinoHeistSkipHacking{"diamondcasinoheistskiphacking", "Skip Hacking", "Skips hacking process"};
 		static SkipDrilling _DiamondCasinoHeistSkipDrilling{"diamondcasinoheistskipdrilling", "Skip Drilling", "Skips drilling process"};
+		static SoloMantrap _DiamondCasinoHeistSoloMantrap{"diamondcasinoheistsolomantrap", "Solo Mantrap", "Skips card swiping process"};
 		static InstantFinish _DiamondCasinoHeistInstantFinish{"diamondcasinoheistinstantfinish", "Instant Finish", "Instantly passes the heist"};
 	}
 }
