@@ -1,4 +1,3 @@
-#if ENABLE_TOXIC_CHEATS || 1
 #include "core/commands/Command.hpp"
 #include "core/commands/IntCommand.hpp"
 #include "core/commands/ListCommand.hpp"
@@ -342,7 +341,7 @@ namespace YimMenu::Features
 				if (auto thread = Scripts::FindScriptThread("fm_mission_controller"_J))
 				{
 					*ScriptLocal(thread, 32785).At(Self::GetPlayer().GetId(), 294).At(143).As<int*>() = 8;
-					*ScriptLocal(thread, 63640).As<int*>() = 5;
+					*ScriptLocal(thread, 64655).As<int*>() = 5;
 				}
 			}
 		};
@@ -379,4 +378,3 @@ namespace YimMenu::Features
 		static InstantFinish _DiamondCasinoHeistInstantFinish{"diamondcasinoheistinstantfinish", "Instant Finish", "Instantly passes the heist"};
 	}
 }
-#endif

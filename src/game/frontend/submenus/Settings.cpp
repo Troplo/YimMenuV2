@@ -51,11 +51,9 @@ namespace YimMenu::Submenus
 		auto game = std::make_shared<Category>("Game");
 
 		auto uiStyle = std::make_shared<Group>("UI");
-		#if ENABLE_TOXIC_CHEATS
 		auto playerEsp = std::make_shared<Group>("Player ESP", 10);
 		auto pedEsp = std::make_shared<Group>("Ped ESP", 10);
 		auto objectEsp = std::make_shared<Group>("Object ESP");
-		#endif
 		auto overlay = std::make_shared<Group>("Overlay");
 		auto chat = std::make_shared<Group>("Chat");
 
@@ -64,7 +62,6 @@ namespace YimMenu::Submenus
 		// Players
 		uiStyle->AddItem(std::make_shared<ListCommandItem>("styleselector"_J));
 
-		#if ENABLE_TOXIC_CHEATS
 		playerEsp->AddItem(std::make_shared<BoolCommandItem>("espdrawplayers"_J));
 		playerEsp->AddItem(std::make_shared<ConditionalItem>("espdrawplayers"_J, std::make_shared<BoolCommandItem>("espdrawdeadplayers"_J)));
 
@@ -97,20 +94,17 @@ namespace YimMenu::Submenus
 		objectEsp->AddItem(std::make_shared<ConditionalItem>("espdrawobjects"_J, std::make_shared<BoolCommandItem>("espscriptinfoobjects"_J, "Object Script Info")));
 
 		objectEsp->AddItem(std::make_shared<ConditionalItem>("espdrawobjects"_J, std::make_shared<BoolCommandItem>("espdistanceobjects"_J, "Object Distance")));
-		#endif
+
 
 		overlay->AddItem(std::make_shared<BoolCommandItem>("overlay"_J));
 		overlay->AddItem(std::make_shared<ConditionalItem>("overlay"_J, std::make_shared<BoolCommandItem>("overlayfps"_J)));
 
-		chat->AddItem(std::make_shared<BoolCommandItem>("clearchat"_J));
-		chat->AddItem(std::make_shared<FloatCommandItem>("chatfontsize"_J));
+		chat->AddItem(std::make_shared<CommandItem>("clearchat"_J));
 
-		#if ENABLE_TOXIC_CHEATS
 		game->AddItem(playerEsp);
 		game->AddItem(pedEsp);
 		game->AddItem(objectEsp);
-		#endif
-		
+
 		gui->AddItem(uiStyle);
 		gui->AddItem(overlay);
 		gui->AddItem(chat);

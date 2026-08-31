@@ -1,4 +1,3 @@
-#if ENABLE_TOXIC_CHEATS
 #include "game/commands/PlayerCommand.hpp"
 #include "core/commands/Command.hpp"
 #include "game/backend/Self.hpp"
@@ -18,6 +17,5 @@ namespace YimMenu::Features
 		}
 	};
 
-	static GivePlayerAllWeapon _GivePlayerAllWeapon{"giveplayerallweapon", "GivePlayerAllWeapon", "Give All Weapon the player"};
+	static GivePlayerAllWeapon _GivePlayerAllWeapon{"giveweapons", "Give Weapons", "Gives all weapons to the player"};
 }
-#endif

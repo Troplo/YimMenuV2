@@ -3,13 +3,10 @@
 #include "core/backend/PatternCache.hpp"
 #include "core/memory/ModuleMgr.hpp"
 #include "core/memory/PatternScanner.hpp"
-#include "core/util/CurrentModule.h"
 #include "core/util/Joaat.hpp"
 #include "types/network/rlSessionInfo.hpp"
 #include "types/rage/atArray.hpp"
 
-
-class CNetworkShoppingMgr;
 namespace YimMenu
 {
 	// on some cracked game builds
@@ -22,31 +19,14 @@ namespace YimMenu
 	{
 		PatternCache::Init();
 
-		const auto gta5 = ModuleMgr.Get(GetCurrentModuleJ());
+		const auto gta5 = ModuleMgr.Get("GTA5_Enhanced.exe"_J);
 		if (!gta5)
 		{
-			LOG(FATAL) << GetCurrentModuleJ();
 			LOG(FATAL) << "Could not find GTA5_Enhanced.exe, is this GTA 5 Enhanced?";
 			return false;
 		}
 
 		auto scanner = PatternScanner(gta5);
-
-		constexpr auto swapchainPtrn = Pattern<"72 C7 EB 02 31 C0 8B 0D">("IDXGISwapChain");
-		scanner.Add(swapchainPtrn, [this](PointerCalculator ptr) {
-			CommandQueue = ptr.Add(0x1A).Add(3).Rip().As<ID3D12CommandQueue**>();
-			SwapChain = ptr.Add(0x21).Add(3).Rip().As<IDXGISwapChain1**>();
-		});
-
-		constexpr auto wndProcPtrn = Pattern<"3D 85 00 00 00 0F 87 2D 02 00 00">("WndProc");
-		scanner.Add(wndProcPtrn, [this](PointerCalculator ptr) {
-			WndProc = ptr.Sub(0x4F).As<PVOID>();
-		});
-
-		constexpr auto hWndPtrn = Pattern<"E8 ? ? ? ? 84 C0 74 25 48 8B 0D">("HWND");
-		scanner.Add(hWndPtrn, [this](PointerCalculator ptr) {
-			Hwnd = ptr.Add(9).Add(3).Rip().As<HWND*>();
-		});
 
 		constexpr auto screenResPtrn = Pattern<"75 39 0F 57 C0 F3 0F 2A 05">("ScreenRes");
 		scanner.Add(screenResPtrn, [this](PointerCalculator ptr) {
@@ -232,21 +212,10 @@ namespace YimMenu
 			IsBEBanned = ptr.Add(3).Rip().Add(8).Add(4).Add(8).Add(4).As<bool*>();
 		});
 
-#if 0
-		constexpr auto battlEyeStatusUpdatePatchPtrn = Pattern<"80 B9 92 0A 00 00 01 48 81 D1 90 0A 00 00">("BattlEyeStatusUpdatePatch");
+		constexpr auto battlEyeStatusUpdatePatchPtrn = Pattern<"C6 05 ? ? ? ? 00 84 C0 0F 84 ? ? ? ? E9">("BattlEyeStatusUpdatePatch");
 		scanner.Add(battlEyeStatusUpdatePatchPtrn, [this](PointerCalculator ptr) {
-			BattlEyeStatusUpdatePatch = BytePatches::Add(ptr.As<void*>(), 
-				// since arxan obfuscated this subroutine, return mid-function instead
-				// TODO: this might break in a later update
-				std::to_array<std::uint8_t>({
-					0x48, 0x83, 0xC4, 0x38, // add rsp, 38h
-					0x5F,                   // pop rdi
-					0x5E,                   // pop rsi
-					0xC3                    // ret
-				})
-			);
+			BattlEyeStatusUpdatePatch = BytePatches::Add(ptr.Add(11).Rip().Add(1).Rip().As<void*>(), std::to_array<std::uint8_t>({0xC3}));
 		});
-#endif
 
 		constexpr auto writeNetArrayDataPtrn = Pattern<"0F 84 06 03 00 00 0F B6 83">("WriteNetArrayData");
 		scanner.Add(writeNetArrayDataPtrn, [this](PointerCalculator ptr) {
@@ -277,12 +246,8 @@ namespace YimMenu
 
 		constexpr auto transactionMgrPtrn = Pattern<"48 8B 05 ? ? ? ? 80 78 39 00 74 2D">("TransactionMgr");
 		scanner.Add(transactionMgrPtrn, [this](PointerCalculator ptr) {
-			TransactionMgr = ptr.Add(3).Rip().As<CNetworkShoppingMgr**>();
+			TransactionMgr = ptr.Add(3).Rip().As<void**>();
 		});
-
-		// scanner.Add(transactionMgrPtrn, [this](PointerCalculator ptr) {
-			// ShouldDoNullTransaction = ptr.Add(3).Rip().As<CNetworkShoppingMgr**>();
-		// });
 
 		constexpr auto getActiveBasketPtrn = Pattern<"48 8B 40 10 81 7B 0C AE A0 A9 04">("GetActiveBasket");
 		scanner.Add(getActiveBasketPtrn, [this](PointerCalculator ptr) {
@@ -380,7 +345,7 @@ namespace YimMenu
 			SetJoinRequestPoolTypePatch = BytePatches::Add(ptr.Sub(5).As<std::uint8_t*>(), std::to_array<std::uint8_t>({0xB8, 0x00, 0x00, 0x00, 0x00}));
 		});
 
-		constexpr auto handleJoinRequestIgnorePoolPatchPtrn = Pattern<"41 83 FF ? 74 ? 41 83 FF ? 0F 84 ? ? ? ? 45 85 FF 75">("HandleJoinRequestIgnorePoolPatch");
+		constexpr auto handleJoinRequestIgnorePoolPatchPtrn = Pattern<"41 83 FF 05 0F 84 ? ? ? ? 8B 84 F7">("HandleJoinRequestIgnorePoolPatch");
 		scanner.Add(handleJoinRequestIgnorePoolPatchPtrn, [this](PointerCalculator ptr) {
 			HandleJoinRequestIgnorePoolPatch = BytePatches::Add(ptr.As<void*>(), std::to_array<std::uint8_t>({0x39, 0xC9, 0x90, 0x90}));
 		});
@@ -467,49 +432,6 @@ namespace YimMenu
 			GameSkeletonUpdate = addr.As<PVOID>();
 		});
 
-		static constexpr auto updateNetworkTransitionPtrn = Pattern<"41 57 41 56 41 55 41 54 56 57 55 53 48 81 EC ? ? ? ? 49 89 CE E8 ? ? ? ? 89 C5">("UpdateNetworkTransition");
-		scanner.Add(updateNetworkTransitionPtrn, [this](PointerCalculator addr) {
-			UpdateNetworkTransition = addr.As<Functions::UpdateNetworkTransition*>();
-		});
-
-		static constexpr auto commandsArgsListPtrn = Pattern<"48 8B 1D ? ? ? ? EB ? 31 ED">("CommandsArgsList");
-		scanner.Add(commandsArgsListPtrn, [this](PointerCalculator addr) {
-			CommandsArgsList = addr.Add(3).Rip().As<void**>();
-		});
-
-		// This is a post launch encrypted function
-		// static constexpr auto encryptedFunctionPtrn = Pattern<"E8 ? ? ? ? E9 ? ? ? ? 4C 89 F1 E8 ? ? ? ? E9 ? ? ? ? 4C 89 F1 E8 ? ? ? ? E9 ? ? ? ? 49 8B 96">("EncryptedFunction");
-		// scanner.Add(encryptedFunctionPtrn, [this](PointerCalculator addr) {
-		// 	CrashingThing = addr.Add(1).Rip().As<void**>();
-		// });
-
-		// TODO: OUT OF SCOPE, WILL CHANGE EVERY UPDATE
-		static constexpr auto encryptor1Ptrn = Pattern<"E8 ? ? ? ? E9 ? ? ? ? 48 8B 45 ? 48 8D 95 ? ? ? ? 48 89 C1 E8 ? ? ? ? E9 ? ? ? ? 48 89 C6">("Encryptor1");
-		scanner.Add(encryptor1Ptrn, [this](PointerCalculator addr) {
-			Encryptor1 = addr.Add(1).Rip().As<Functions::Encryptor1*>();
-		});
-
-		// TODO: OUT OF SCOPE, WILL CHANGE EVERY UPDATE
-		static constexpr auto packerListPtrn = Pattern<"48 8D 05 ? ? ? ? 48 89 45 ? B8 ? ? ? ? 85 C0 0F 85 ? ? ? ? E9 ? ? ? ? 84 C0 0F 84 ? ? ? ? E9 ? ? ? ? 50">("PackerList");
-		scanner.Add(packerListPtrn, [this](PointerCalculator addr) {
-			auto list = addr.Add(7).As<std::uint8_t*>();
-			PackerList = list;
-		});
-
-		// TODO: OUT OF SCOPE, WILL CHANGE EVERY UPDATE
-		static constexpr auto networkFunctionDataPtrn = Pattern<"48 8D 05 ? ? ? ? 48 89 45 ? 48 8D 85 ? ? ? ? 48 89 45 ? 48 8B 45 ? 48 89 45 ? 33 C0 89 85 ? ? ? ? 89 85 ? ? ? ? 48 8D 15 ? ? ? ? 48 89 95 ? ? ? ? 48 8B 95 ? ? ? ? ? ? 89 4D ? 8B 52 ? 89 55 ? 89 45 ? 89 45 ? 48 8D 05 ? ? ? ? 48 89 45 ? B8 ? ? ? ? 85 C0 0F 85 ? ? ? ? E9 ? ? ? ? 48 89 C6 ? ? ? 48 8D 15">("NetworkFunction");
-		scanner.Add(networkFunctionDataPtrn, [this](PointerCalculator addr) {
-			auto list = addr.Add(3).Rip().As<std::uint8_t*>();
-			NetworkFunctionData = list;
-		});
-
-		// TODO: OUT OF SCOPE, WILL CHANGE EVERY UPDATE
-		static constexpr auto networkFunctionLocationsPtrn = Pattern<"48 8D 05 ? ? ? ? 48 89 45 ? B8 ? ? ? ? 85 C0 0F 85 ? ? ? ? E9 ? ? ? ? 48 89 C6 ? ? ? 48 8D 15">("NetworkFunctionLocations");
-		scanner.Add(networkFunctionLocationsPtrn, [this](PointerCalculator addr) {
-			auto list = addr.Add(3).Rip().As<std::uint8_t*>();
-			NetworkFunctionLocations = list;
-		});
-
 		if (!scanner.Scan())
 		{
 			LOG(FATAL) << "Some patterns could not be found, unloading.";
@@ -522,56 +444,56 @@ namespace YimMenu
 
 	bool Pointers::LateInit()
 	{
-		// auto sc = ModuleMgr.Get("socialclub.dll"_J);
-		// while (!sc)
-		// {
-		// 	LOG(WARNING) << "Waiting for socialclub.dll";
-		// 	std::this_thread::sleep_for(1s);
-		//
-		// 	if (IsSocialClubNeverGoingToLoad())
-		// 	{
-		// 		LOG(WARNING) << "Timed out checking for socialclub.dll";
-		// 		return false;
-		// 	}
-		//
-		// 	ModuleMgr.LoadModules();
-		// 	sc = ModuleMgr.Get("socialclub.dll"_J);
-		// }
-		//
-		// auto scanner = PatternScanner(sc);
-		//
-		// constexpr auto getPresenceAttributesPtrn = Pattern<"48 8B C4 48 89 58 08 48 89 68 10 48 89 70 18 48 89 78 20 41 54 41 56 41 57 48 83 EC 40 33 DB 49">("GetPresenceAttributes");
-		// scanner.Add(getPresenceAttributesPtrn, [this](PointerCalculator ptr) {
-		// 	GetPresenceAttributes = ptr.As<Functions::GetPresenceAttributes>();
-		// });
-		//
-		// constexpr auto numHandlesPatchPtrn = Pattern<"83 FD 20 0F 87 54 02 00 00">("NumHandlesPatch");
-		// scanner.Add(numHandlesPatchPtrn, [this](PointerCalculator ptr) {
-		// 	BytePatches::Add(ptr.Add(2).As<std::uint8_t*>(), 100)->Apply(); // change handle limit to 100
-		// });
-		//
-		// constexpr auto readAttributePatchPtrn = Pattern<"75 70 EB 23">("ReadAttributesPatch");
-		// scanner.Add(readAttributePatchPtrn, [this](PointerCalculator ptr) {
-		// 	BytePatches::Add(ptr.As<void*>(), std::to_array<std::uint8_t>({0x90, 0x90}))->Apply();
-		// });
-		//
-		// constexpr auto readAttributePatch2Ptrn = Pattern<"32 C0 EB ? C7 83">("ReadAttributesPatch2");
-		// scanner.Add(readAttributePatch2Ptrn, [this](PointerCalculator ptr) {
-		// 	BytePatches::Add(ptr.As<void*>(), std::to_array<std::uint8_t>({0xB0, 0x01}))->Apply();
-		// });
-		//
-		// constexpr auto getAvatarsPtrn = Pattern<"89 4E 7C 48 8B CE E8 ? ? ? ? 84 C0">("GetAvatars");
-		// scanner.Add(getAvatarsPtrn, [this](PointerCalculator ptr) {
-		// 	GetAvatars = ptr.Add(6).Add(1).Rip().As<Functions::GetAvatars>();
-		// });
-		//
-		// if (!scanner.Scan())
-		// {
-		// 	LOG(WARNING) << "Some socialclub patterns could not be found";
-		// 	return false;
-		// }
-		//
-		// PatternCache::Update();
+		auto sc = ModuleMgr.Get("socialclub.dll"_J);
+		while (!sc)
+		{
+			LOG(WARNING) << "Waiting for socialclub.dll";
+			std::this_thread::sleep_for(1s);
+
+			if (IsSocialClubNeverGoingToLoad())
+			{
+				LOG(WARNING) << "Timed out checking for socialclub.dll";
+				return false;
+			}
+
+			ModuleMgr.LoadModules();
+			sc = ModuleMgr.Get("socialclub.dll"_J);
+		}
+
+		auto scanner = PatternScanner(sc);
+
+		constexpr auto getPresenceAttributesPtrn = Pattern<"48 8B C4 48 89 58 08 48 89 68 10 48 89 70 18 48 89 78 20 41 54 41 56 41 57 48 83 EC 40 33 DB 49">("GetPresenceAttributes");
+		scanner.Add(getPresenceAttributesPtrn, [this](PointerCalculator ptr) {
+			GetPresenceAttributes = ptr.As<Functions::GetPresenceAttributes>();
+		});
+
+		constexpr auto numHandlesPatchPtrn = Pattern<"83 FD 20 0F 87 54 02 00 00">("NumHandlesPatch");
+		scanner.Add(numHandlesPatchPtrn, [this](PointerCalculator ptr) {
+			BytePatches::Add(ptr.Add(2).As<std::uint8_t*>(), 100)->Apply(); // change handle limit to 100
+		});
+
+		constexpr auto readAttributePatchPtrn = Pattern<"75 70 EB 23">("ReadAttributesPatch");
+		scanner.Add(readAttributePatchPtrn, [this](PointerCalculator ptr) {
+			BytePatches::Add(ptr.As<void*>(), std::to_array<std::uint8_t>({0x90, 0x90}))->Apply();
+		});
+
+		constexpr auto readAttributePatch2Ptrn = Pattern<"32 C0 EB ? C7 83">("ReadAttributesPatch2");
+		scanner.Add(readAttributePatch2Ptrn, [this](PointerCalculator ptr) {
+			BytePatches::Add(ptr.As<void*>(), std::to_array<std::uint8_t>({0xB0, 0x01}))->Apply();
+		});
+
+		constexpr auto getAvatarsPtrn = Pattern<"89 4B ? 48 8B CB E8 ? ? ? ? 84 C0">("GetAvatars");
+		scanner.Add(getAvatarsPtrn, [this](PointerCalculator ptr) {
+			GetAvatars = ptr.Add(6).Add(1).Rip().As<Functions::GetAvatars>();
+		});
+
+		if (!scanner.Scan())
+		{
+			LOG(WARNING) << "Some socialclub patterns could not be found";
+			return false;
+		}
+
+		PatternCache::Update();
 		return true;
 	}
 }
