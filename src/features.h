@@ -8,5 +8,6 @@
 #define ENABLE_PARAGON_DEBUGGING 1
 // not finished for enhanced
 #define ENABLE_PARAGON_SDK 0
+#define ENABLE_PARAPAK 0
 
 #endif //FEATURES_H

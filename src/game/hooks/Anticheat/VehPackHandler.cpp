@@ -1,3 +1,4 @@
+#if ENABLE_PARAPAK
 //
 // Created by Troplo on 16/07/2026.
 //
@@ -173,3 +174,4 @@ namespace YimMenu
 		CloseHandle(snapshot);
 	}
 } // YimMenu
+#endif

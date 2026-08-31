@@ -29,7 +29,8 @@ add_library(${PROJECT_NAME} MODULE ${SRC_FILES}
         src/game/hooks/Anticheat/UnpackHandler.cpp
         src/game/hooks/Anticheat/UnpackHandler.h
         src/game/hooks/Anticheat/VehPackHandler.cpp
-        src/game/hooks/Anticheat/VehPackHandler.h)
+        src/game/hooks/Anticheat/VehPackHandler.h
+)
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 23)
 
 target_precompile_headers(${PROJECT_NAME} PUBLIC "${SRC_DIR}/common.hpp")

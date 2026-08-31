@@ -334,6 +334,12 @@ namespace YimMenu
             ImGui_ImplWin32_WndProcHandler(hwnd, msg, wparam, lparam);
         }
 
+    	if (msg == WM_SYSKEYDOWN && wparam == VK_RETURN)
+    	{
+    		LOG(VERBOSE) << "Alt+Enter";
+    		return 0;
+    	}
+
         if (GetInstance().m_OriginalWndProc)
             return CallWindowProcA(GetInstance().m_OriginalWndProc, hwnd, msg, wparam, lparam);
 

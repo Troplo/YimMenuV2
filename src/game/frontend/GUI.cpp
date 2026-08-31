@@ -27,11 +27,13 @@ namespace YimMenu
 			    Notifications::Draw();
 		    },
 		    -2);
+#if ENABLE_TOXIC_CHEATS
 		Renderer::AddRendererCallback(
 		    [&] {
 			    ESP::Draw();
 		    },
 		    -3);
+#endif
 		Renderer::AddRendererCallback(
 		    [&] {
 			    ChatDisplay::Draw();

@@ -154,7 +154,7 @@ if(CROSSCOMPILE)
         add_compile_options("$<$<COMPILE_LANGUAGE:CXX>:-femulated-tls${CXX_FLAGS}>")
 
         # Disable RTTI to work around libstdc++ issue https://stackoverflow.com/a/77025827
-        add_compile_options("$<$<COMPILE_LANGUAGE:CXX>:-fuse-ld=lld;-fno-rtti${CXX_FLAGS}>")
+        add_compile_options("$<$<COMPILE_LANGUAGE:CXX>:-fuse-ld=lld;-frtti${CXX_FLAGS}>")
         add_link_options(-fuse-ld=lld -fno-rtti)
 
     else()

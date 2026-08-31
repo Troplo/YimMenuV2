@@ -1,6 +1,7 @@
 #include "AnticheatBypass.hpp"
 #include "core/backend/ScriptMgr.hpp"
 #include "core/memory/ModuleMgr.hpp"
+#include "core/util/CurrentModule.h"
 #include "core/util/Joaat.hpp"
 #include "game/pointers/Pointers.hpp"
 #include "game/backend/NativeHooks.hpp"
@@ -337,7 +338,7 @@ namespace YimMenu
 			//Pointers.BattlEyeStatusUpdatePatch->Apply();
 
 #if RESTORE_DESTROYED_FUNCTIONS
-			uintptr_t base = ModuleMgr.Get("GTA5_Enhanced.exe"_J)->Base();
+			uintptr_t base = ModuleMgr.Get(Joaat(GetCurrentModule()))->Base();
 			PatchEncryptedFunctions(base);
 			PatchDestroyedFunctions(base);
 #endif

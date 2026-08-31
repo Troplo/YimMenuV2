@@ -1,7 +1,7 @@
 //
 // Created by Troplo on 16/07/2026.
 //
-
+#if ENABLE_PARAPAK
 #ifndef UNPACKHANDLER_H
 #define UNPACKHANDLER_H
 
@@ -25,5 +25,5 @@ namespace YimMenu {
 		static void DecodeStream(const uint8_t** stream, uint32_t* out_v7, uint32_t* out_v8);
 	};
 } // Nexus
-
+#endif
 #endif //UNPACKHANDLER_H

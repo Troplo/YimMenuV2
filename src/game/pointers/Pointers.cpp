@@ -3,6 +3,7 @@
 #include "core/backend/PatternCache.hpp"
 #include "core/memory/ModuleMgr.hpp"
 #include "core/memory/PatternScanner.hpp"
+#include "core/util/CurrentModule.h"
 #include "core/util/Joaat.hpp"
 #include "types/network/rlSessionInfo.hpp"
 #include "types/rage/atArray.hpp"
@@ -19,7 +20,7 @@ namespace YimMenu
 	{
 		PatternCache::Init();
 
-		const auto gta5 = ModuleMgr.Get("GTA5_Enhanced.exe"_J);
+		const auto gta5 = ModuleMgr.Get(Joaat(GetCurrentModule()));
 		if (!gta5)
 		{
 			LOG(FATAL) << "Could not find GTA5_Enhanced.exe, is this GTA 5 Enhanced?";
@@ -246,7 +247,7 @@ namespace YimMenu
 
 		constexpr auto transactionMgrPtrn = Pattern<"48 8B 05 ? ? ? ? 80 78 39 00 74 2D">("TransactionMgr");
 		scanner.Add(transactionMgrPtrn, [this](PointerCalculator ptr) {
-			TransactionMgr = ptr.Add(3).Rip().As<void**>();
+			TransactionMgr = ptr.Add(3).Rip().As<CNetworkShoppingMgr**>();
 		});
 
 		constexpr auto getActiveBasketPtrn = Pattern<"48 8B 40 10 81 7B 0C AE A0 A9 04">("GetActiveBasket");

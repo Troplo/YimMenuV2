@@ -6,6 +6,7 @@
 #include "core/scripting/LuaScript.hpp"
 #include "core/scripting/LuaUserInterface.hpp"
 #include "core/scripting/LuaUtils.hpp"
+#include "core/util/CurrentModule.h"
 #include "core/util/Joaat.hpp"
 #include "game/pointers/Pointers.hpp"
 
@@ -52,7 +53,7 @@ namespace YimMenu::Lua
 		static int ScanPattern(lua_State* state)
 		{
 			auto sig    = CheckStringSafe(state, 1);
-			auto* gta5  = ModuleMgr.Get("GTA5_Enhanced.exe"_J);
+			auto* gta5  = ModuleMgr.Get(Joaat(GetCurrentModule()));
 			if (!gta5)
 			{
 				lua_pushnil(state);

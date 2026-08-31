@@ -1,3 +1,4 @@
+#if ENABLE_PARAPAK
 //
 // Created by Troplo on 16/07/2026.
 //
@@ -26,3 +27,4 @@ public:
 } // YimMenu
 
 #endif //VEHPACKHANDLER_H
+#endif
